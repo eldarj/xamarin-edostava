@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Easyfood_Xamarin.Registracija"
+             Title="Registracija">
+    <StackLayout
+        Margin="10"
+        VerticalOptions="CenterAndExpand">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Form inputs -->
+            <Label Text="Username" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" />
+            <Entry x:Name="inputUsername" Grid.Row="0" Grid.Column="1" />
+
+            <Label Text="Password" Grid.Row="1" Grid.Column="0" />
+            <Entry x:Name="inputPassword" Grid.Row="1" Grid.Column="1" />
+
+            <Label Text="Ime" Grid.Row="2" Grid.Column="0" />
+            <Entry x:Name="inputIme" Grid.Row="2" Grid.Column="1" />
+
+            <Label Text="Prezime" Grid.Row="3" Grid.Column="0" />
+            <Entry x:Name="inputPrezime" Grid.Row="3" Grid.Column="1" />
+
+            <!-- Blok Dropdown -->
+            <Label Text="Izaberite blok" Grid.Row="4" Grid.Column="0" />
+
+            <!-- Button section -->
+            <Button Text="Registrujte se" 
+                    Grid.Row="5" Grid.ColumnSpan="2"/>
+            <Label Text="Već posjedujete račun?" 
+                   Grid.Row="6" Grid.ColumnSpan="2" 
+                   HorizontalTextAlignment="Center"/>
+            <Button Text="Login" 
+                    Grid.Row="7" Grid.ColumnSpan="2"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>
