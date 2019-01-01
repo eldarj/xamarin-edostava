@@ -8,11 +8,14 @@
             <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout>
+    <StackLayout HorizontalOptions="Center">
         <StackLayout Padding="10">
             <Picker x:Name="pickerGradovi" Title="Odaberite grad" SelectedIndexChanged="PickerGradovi_SelectedIndexChanged"/>
         </StackLayout>
-        <ListView x:Name="listViewRestorani" HasUnevenRows="True" ItemTapped="ListViewRestorani_ItemTapped">
+        <ListView x:Name="listViewRestorani" 
+                  HasUnevenRows="True" 
+                  ItemTapped="ListViewRestorani_ItemTapped" 
+                  HorizontalOptions="Center">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

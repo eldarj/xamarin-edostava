@@ -22,7 +22,7 @@
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
                     <StackLayout Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-                        <Image Source="easyfood-icon.png" WidthRequest="100"/>
+                        <Image Source="easyfood_icon.png" WidthRequest="100"/>
                         <StackLayout Orientation="Vertical" VerticalOptions="Center">
                             <Label Text="Easyfood"/>
                             <Label Text="eldar.jahijagić@edu.fit.ba"/>

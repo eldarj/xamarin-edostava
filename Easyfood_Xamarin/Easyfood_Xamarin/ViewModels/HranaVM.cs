@@ -58,8 +58,8 @@ namespace Easyfood_Xamarin.ViewModels
                 Kolicina++;
                 StanjeUKorpiProp = String.Format("Stanje u korpi: x{0} - ukupno {1} KM", Kolicina, Kolicina * Cijena);
                 StanjeUKorpiVisibility = true;
-                HranaAddedButtonImg = "add-red.png";
-                HranaRemoveButtonImg = "minus-red.png";
+                HranaAddedButtonImg = "add_red.png";
+                HranaRemoveButtonImg = "minus_red.png";
 
                 if (Global.narudzba == null)
                 {
@@ -126,8 +126,8 @@ namespace Easyfood_Xamarin.ViewModels
                             sItem.Kolicina = inKorpa.Kolicina;
                             sItem.StanjeUKorpiProp = String.Format("Stanje u korpi: x{0} - ukupno {1} KM", sItem.Kolicina, sItem.Cijena);
                             sItem.StanjeUKorpiVisibility = true;
-                            sItem.HranaAddedButtonImg = "add-red.png";
-                            sItem.HranaRemoveButtonImg = "minus-red.png";
+                            sItem.HranaAddedButtonImg = "add_red.png";
+                            sItem.HranaRemoveButtonImg = "minus_red.png";
                         }
 
                         return sItem;

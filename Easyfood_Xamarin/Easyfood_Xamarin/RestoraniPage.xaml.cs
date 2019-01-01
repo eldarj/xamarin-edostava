@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Easyfood_Xamarin.Model;
 using Newtonsoft.Json;
+using Xamarin.Essentials;
 
 namespace Easyfood_Xamarin
 {
@@ -16,10 +17,11 @@ namespace Easyfood_Xamarin
         private WebApiHelper servis = new WebApiHelper();
         private List<Grad> gradovi;
         private List<Restoran> listRestorani;
-
         public RestoraniPage()
         {
             InitializeComponent();
+            var mainDisplay = DeviceDisplay.MainDisplayInfo;
+            var displayWidth = mainDisplay.Width;
         }
 
         protected async override void OnAppearing()
