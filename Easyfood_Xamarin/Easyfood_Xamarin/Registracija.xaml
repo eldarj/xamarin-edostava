@@ -39,6 +39,7 @@
 
             <!-- Button section -->
             <Button Text="Registrujte se" 
+                    Clicked="Registracija_Clicked"
                     Grid.Row="5" Grid.ColumnSpan="2"/>
             <Label Text="Već posjedujete račun?" 
                    Grid.Row="6" Grid.ColumnSpan="2" 

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="Easyfood_Xamarin.Navigation.MyMasterDetailPageMaster"
+            Title="Preglednik">
+    <StackLayout>
+        <ListView x:Name="MenuItemsListView"
+            SeparatorVisibility="None"
+            HasUnevenRows="true"
+            ItemsSource="{Binding MenuItems}">
+            <ListView.Header>
+                <Grid BackgroundColor="Red">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                        <Image Source="easyfood-icon.png" WidthRequest="100"/>
+                        <StackLayout Orientation="Vertical" VerticalOptions="Center">
+                            <Label Text="Easyfood"/>
+                            <Label Text="eldar.jahijagić@edu.fit.ba"/>
+                        </StackLayout>
+                    </StackLayout>  
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <Image WidthRequest="{Binding ImageSourceWidth}" 
+                                   Source="{Binding ImageSource}"
+                                   VerticalOptions="Center"></Image>
+                            <Label VerticalOptions="FillAndExpand" 
+                                    VerticalTextAlignment="Center" 
+                                    Text="{Binding Title}" 
+                                    FontSize="24"/>         
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Easyfood_Xamarin.Converter"
+             xmlns:vm="clr-namespace:Easyfood_Xamarin.ViewModels"
+             x:Class="Easyfood_Xamarin.TestVM">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <SearchBar x:Name="searchPretraga" Placeholder="Naziv, cijena, tip kuhinje..." TextChanged="SearchPretraga_TextChanged" Margin="10"></SearchBar>
+            <ListView x:Name="HranaListItems"
+                      HasUnevenRows="True"
+                      CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell IsEnabled="False">
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Grid.Column="0">
+                                    <ImageButton x:Name="imgBtnAdd"
+                                            WidthRequest="25"
+                                            Source="{Binding HranaAddedButtonImg}"
+                                            Command="{Binding HranaAddedCommand}"/>
+                                    <ImageButton x:Name="imgBtnRemove"
+                                            WidthRequest="25"
+                                            Source="{Binding HranaRemoveButtonImg}"
+                                            Command="{Binding HranaRemovedCommand}"/>
+                                </StackLayout>
+                                <Image x:Name="imgHrana" 
+                                    VerticalOptions="Start"
+                                    WidthRequest="100"
+                                    HeightRequest="100"
+                                    Aspect="AspectFill"
+                                    Grid.Column="1"
+                                    Source="{Binding Slika, Converter={StaticResource Key=imgConv}}"></Image>
+                                <StackLayout Orientation="Vertical" Grid.Column="2">
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout Orientation="Vertical" Grid.Column="2" HorizontalOptions="FillAndExpand">
+                                            <Label Text="{Binding TipKuhinjeNaziv}"/>
+                                            <Label Text="{Binding hranaStavka.Naziv}" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Opis}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical"
+                                            HorizontalOptions="End"
+                                            Grid.Column="2">
+                                            <Label Text="{Binding Cijena, StringFormat='{0:N} KM'}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                        <Frame BorderColor="Gray" IsVisible="{Binding StanjeUKorpiVisibility}">
+                                            <Label Text="{Binding StanjeUKorpiProp}"/>
+                                        </Frame>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

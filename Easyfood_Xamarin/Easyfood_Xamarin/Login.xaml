@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Easyfood_Xamarin.Login">
+    <ContentPage.Content>
+        <StackLayout
+            Margin="10"
+            VerticalOptions="CenterAndExpand">
+            <Entry x:Name="inputUsername" Placeholder="Username" Text="almasa" />
+            <Entry x:Name="inputPassword" Placeholder="Password" Text="almasa" IsPassword="True" />
+            <Button x:Name="btnLogin" Text="Login" Clicked="BtnLogin_Clicked"/>
+            <Label Text="Nemate račun?"/>
+            <Button x:Name="btnRegistracija" Text="Registrujte se" Clicked="BtnRegistracija_Clicked"/>
+            <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="false" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

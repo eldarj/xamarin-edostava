@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Easyfood_Xamarin.Navigation.MyMasterDetailPage"
+             xmlns:nav="clr-namespace:Easyfood_Xamarin.Navigation"
+             xmlns:pages="clr-namespace:Easyfood_Xamarin"
+             MasterBehavior="Popover">
+  <MasterDetailPage.Master>
+    <nav:MyMasterDetailPageMaster x:Name="MasterPage" />
+  </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+    <NavigationPage>
+      <x:Arguments>
+        <pages:RestoraniPage />
+      </x:Arguments>
+    </NavigationPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Easyfood_Xamarin.Converter"
+             x:Class="Easyfood_Xamarin.RestoraniPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <StackLayout Padding="10">
+            <Picker x:Name="pickerGradovi" Title="Odaberite grad" SelectedIndexChanged="PickerGradovi_SelectedIndexChanged"/>
+        </StackLayout>
+        <ListView x:Name="listViewRestorani" HasUnevenRows="True" ItemTapped="ListViewRestorani_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="15">
+                            <Image x:Name="imgRestoran"
+                                   Aspect="AspectFill"
+                                   Source="{Binding Slika, Converter={StaticResource Key=imgConv}}">
+                            </Image>
+                            <StackLayout VerticalOptions="Start" Padding="10">
+                                <Label Text="{Binding Naziv}" FontAttributes="Bold"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding BlokGrad}"/>
+                                </StackLayout>
+                                <Label Text="{Binding Opis}"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
