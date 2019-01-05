@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Easyfood_Xamarin.Converter"
+             x:Class="Easyfood_Xamarin.NarudzbePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:LabelCapitalizer x:Key="lblCaps"></converters:LabelCapitalizer>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" Margin="10">
+            <SearchBar x:Name="searchPretraga" Placeholder="Šifra, cijena, adresa, status..." TextChanged="SearchPretraga_TextChanged"></SearchBar>
+            <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="True" />
+            <StackLayout x:Name="containerApiError" Orientation="Vertical" IsVisible="False">
+                <Label Text="Došlo je do greške kod učitavanja podataka. Pokušajte ponovo" TextColor="Red" FontSize="11" HorizontalOptions="Center"/>
+                <Button x:Name="btnReloadPodatke" Text="Učitaj podatke" HorizontalOptions="Center" Clicked="BtnReloadPodatke_Clicked"/>
+            </StackLayout>
+            <Label x:Name="lblEmptyList" Style="{StaticResource listEmptyLabel}"/>
+            <ListView x:Name="listViewNarudzbe" 
+                  HasUnevenRows="True" 
+                  ItemTapped="ListViewNarudzbe_ItemTapped" 
+                  HorizontalOptions="Center">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="15">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <StackLayout  Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                        <Label Text="{Binding Source='UID Šifra', Converter={StaticResource Key=lblCaps}}" 
+                                           Style="{StaticResource infoLabel}" 
+                                           HorizontalOptions="StartAndExpand"/>
+                                        <Label Text="{Binding SifraString}" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding UkupnaCijenaFormatted}" 
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="EndAndExpand"/>
+                                </StackLayout>
+
+                                <Label Text="{Binding Source='Datum naručivanja', Converter={StaticResource Key=lblCaps}}" 
+                                       Style="{StaticResource infoLabel}" />
+                                <Label Text="{Binding DatumVrijemeFormatted}"/>
+
+                                <Label Text="{Binding Source='Adresa', Converter={StaticResource Key=lblCaps}}"  
+                                       Style="{StaticResource infoLabel}"/>
+                                <Label Text="{Binding AdresaBlokGrad}"/>
+
+                                <Label Text="{Binding Source='Status', Converter={StaticResource Key=lblCaps}}"  Style="{StaticResource infoLabel}"/>
+                                <Label Text="{Binding StatusNarudzbe}"/>
+                                
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

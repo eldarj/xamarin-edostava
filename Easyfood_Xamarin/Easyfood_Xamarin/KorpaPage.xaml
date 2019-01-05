@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Easyfood_Xamarin.Converter"
+             xmlns:vm="clr-namespace:Easyfood_Xamarin.ViewModels"
+             xmlns:partials="clr-namespace:Easyfood_Xamarin.PartialViews"
+             x:Class="Easyfood_Xamarin.KorpaPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <partials:RequiredLoginNapomena x:Name="requiredLoginPartialView" IsVisible="False"/>
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                <Label Text="{Binding KorpaPageInfoProp}" Margin="10"></Label>
+                <ListView x:Name="KorpaListView"
+                      ItemsSource="{Binding KorpaList}"
+                      Margin="10"
+                      HasUnevenRows="True"
+                      CachingStrategy="RecycleElement">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="imgHrana"
+                                       VerticalOptions="Start"
+                                       WidthRequest="100"
+                                       HeightRequest="100"
+                                       Aspect="AspectFill"
+                                       Grid.Column="0"
+                                       Source="{Binding Slika, Converter={StaticResource Key=imgConv}}"></Image>
+                                    <StackLayout Orientation="Vertical"
+                                             Grid.Column="1">
+                                        <Label Text="{Binding NarucenoIzRestorana}"></Label>
+                                        <Label Text="{Binding KolicinaNazivFormatted}" FontAttributes="Bold"></Label>
+                                        <Label Text="{Binding CijenaFormatted}"></Label>
+                                    </StackLayout>
+                                    <Label Text="{Binding CijenaUkupnoFormatted}" 
+                                       Grid.Column="2"></Label>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout Margin="20">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                        <Label Text="{Binding UkupnaCijenaProp}" FontAttributes="Bold"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Label Text="Adresa za dostavu"/>
+                        <Label x:Name="lblInvalidAdres"
+                       IsVisible="{Binding DisplayInvalidAdresInfo}"
+                       Text="Napomena: Adresa smije sadržati samo alfranumeričke znakove, i ne smije biti kraća od 3 karaktera!" 
+                       FontSize="11" TextColor="Red"/>
+                        <Entry x:Name="inputAdresa"
+                        Text="{Binding Adresa}"
+                        TextChanged="InputAdresa_TextChanged" />
+                        <Picker x:Name="pickerLokacija"
+                        Title=""/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                        <Button x:Name="btnIzvsiNarudzbu" Text="Naruči" Clicked="BtnIzvsiNarudzbu_Clicked" IsEnabled="{Binding KorpaValid}"/>
+                        <Button x:Name="btnOdbaciNarudzbu" Text="Odbaci" Clicked="BtnOdbaciNarudzbu_Clicked" IsEnabled="{Binding KorpaNotEmpty}"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

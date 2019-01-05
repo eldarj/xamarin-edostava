@@ -9,19 +9,24 @@ namespace Easyfood_Xamarin.Helpers
     class Global
     {
         public static Narucilac Narucilac { get; set; }
-        public static Narudzba narudzba { get; set; }
+        public static Narudzba Narudzba { get; set; }
+        public static bool OnUserAuthGoToKorpaFlag { get; set; }
+
+        public static string GetNarucilacAdresa { get { return Narucilac != null ? Narucilac.Adresa : "-";  } }
+        public static int? GetNarucilacBlokID { get { return Narucilac?.BlokID; } }
 
         public static void AddHrana(Hrana hrana)
         {
-            if (narudzba.HranaStavke.Any(s => s.HranaID == hrana.HranaID))
+            if (Narudzba.StavkeNarudzbe.Any(s => s.HranaID == hrana.HranaID))
             {
-                ++narudzba.HranaStavke.Where(h => h.HranaID == hrana.HranaID).Single().Kolicina;
+                ++Narudzba.StavkeNarudzbe.Where(h => h.HranaID == hrana.HranaID).Single().Kolicina;
             }
             else
             {
-                narudzba.HranaStavke.Add(new StavkaNarudzbe
+                Narudzba.StavkeNarudzbe.Add(new StavkaNarudzbe
                 {
-                    NarudzbaID = narudzba.NarudzbaID,
+                    Hrana = hrana,
+                    NarudzbaID = Narudzba.NarudzbaID,
                     HranaID = hrana.HranaID,
                     Kolicina = 1
                 });
@@ -29,16 +34,16 @@ namespace Easyfood_Xamarin.Helpers
         }
         public static void RemoveHrana(Hrana hrana)
         {
-            if (narudzba.HranaStavke.Any(s => s.HranaID == hrana.HranaID))
+            if (Narudzba.StavkeNarudzbe.Any(s => s.HranaID == hrana.HranaID))
             {
-                StavkaNarudzbe s = narudzba.HranaStavke.Where(h => h.HranaID == hrana.HranaID).Single();
+                StavkaNarudzbe s = Narudzba.StavkeNarudzbe.Where(h => h.HranaID == hrana.HranaID).Single();
                 if (s.Kolicina > 1)
                 {
                     --s.Kolicina;
                 }
                 else
                 {
-                    narudzba.HranaStavke.Remove(s);
+                    Narudzba.StavkeNarudzbe.Remove(s);
                 }
             }
         }

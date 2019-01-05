@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:partials="clr-namespace:Easyfood_Xamarin.PartialViews"
+             xmlns:converters="clr-namespace:Easyfood_Xamarin.Converter"
+             x:Class="Easyfood_Xamarin.RestoraniRecenzije">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"/>
+            <converters:ZvjezdicaGenerator x:Key="zvjezdicaConv"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <partials:RequiredLoginNapomena x:Name="requiredLoginPartialView" IsVisible="True"/>
+            <StackLayout HorizontalOptions="Center">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Naziv}" Style="{StaticResource titleLabel}"/>
+                    <StackLayout x:Name="listItemRecenzijaOcjena" Orientation="Horizontal">
+                        <ImageButton WidthRequest="10" Source="{Binding ProsjecnaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=1}" />
+                        <ImageButton WidthRequest="10" Source="{Binding ProsjecnaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=2}" />
+                        <ImageButton WidthRequest="10" Source="{Binding ProsjecnaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=3}" />
+                        <ImageButton WidthRequest="10" Source="{Binding ProsjecnaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=4}" />
+                        <ImageButton WidthRequest="10" Source="{Binding ProsjecnaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=5}" />
+                    </StackLayout>
+                </StackLayout>
+                <Label Text="{Binding UkupnoRecenzija}"/>
+                <!-- Recenzije -->
+                <BoxView Style="{StaticResource bvDelimiter}"/>
+                <Label Text="RECENZIJE" Style="{StaticResource infoLabelBold}"/>
+                <StackLayout x:Name="NovaRecenzijaForm" IsVisible="False">
+                    <Label Text="Napiši komentar"/>
+                    <Label Text="Ocijeni restoran" FontSize="13"/>
+                    <StackLayout x:Name="novaRecenzijaOcjena" Orientation="Horizontal">
+                        <ImageButton WidthRequest="10"
+                          Source="{Binding NovaRecenzijaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=1}"
+                          Command="{Binding NovaOcjenaCommand}" CommandParameter="1"/>
+                        <ImageButton WidthRequest="10"
+                          Source="{Binding NovaRecenzijaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=2}"
+                          Command="{Binding NovaOcjenaCommand}" CommandParameter="2"/>
+                        <ImageButton WidthRequest="10"
+                          Source="{Binding NovaRecenzijaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=3}"
+                          Command="{Binding NovaOcjenaCommand}" CommandParameter="3"/>
+                        <ImageButton WidthRequest="10"
+                          Source="{Binding NovaRecenzijaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=4}"
+                          Command="{Binding NovaOcjenaCommand}" CommandParameter="4"/>
+                        <ImageButton WidthRequest="10"
+                          Source="{Binding NovaRecenzijaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=5}"
+                          Command="{Binding NovaOcjenaCommand}" CommandParameter="5"/>
+                    </StackLayout>
+                    <Label x:Name="lblNoviKomentarError" Text="*Komentar ne smije biti kraći od 5 karaktera!" Style="{StaticResource errorLabel}" IsVisible="{Binding NoviKomentarError}"/>
+                    <Editor x:Name="editorNoviKomentar" AutoSize="TextChanges"/>
+                    <Button x:Name="btnNoviKomentar" Text="Napiši" Clicked="BtnNoviKomentar_Clicked" HorizontalOptions="Start"/>
+                </StackLayout>
+                <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="True" />
+                <ListView x:Name="RecenzijeListView"
+                      ItemsSource="{Binding ListRecenzije}"
+                      HasUnevenRows="True"
+                      CachingStrategy="RecycleElement">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="5">
+                                    <Label Text="{Binding Datum}" FontSize="10"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding ImePrezime}" FontSize="11"/>
+                                        <StackLayout x:Name="listItemRecenzijaOcjena" Orientation="Horizontal">
+                                            <ImageButton WidthRequest="10" 
+                                            Source="{Binding Ocjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=1}" />
+                                            <ImageButton WidthRequest="10" 
+                                            Source="{Binding Ocjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=2}" />
+                                            <ImageButton WidthRequest="10" 
+                                            Source="{Binding Ocjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=3}" />
+                                            <ImageButton WidthRequest="10" 
+                                            Source="{Binding Ocjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=4}" />
+                                            <ImageButton WidthRequest="10" 
+                                            Source="{Binding Ocjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=5}" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Label Text="{Binding Komentar}" Parent="10"/>
+                                    <BoxView Style="{StaticResource bvDelimiter}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

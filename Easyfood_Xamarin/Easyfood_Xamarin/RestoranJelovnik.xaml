@@ -3,69 +3,75 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Easyfood_Xamarin.Converter"
              xmlns:vm="clr-namespace:Easyfood_Xamarin.ViewModels"
-             x:Class="Easyfood_Xamarin.TestVM">
+             xmlns:partials="clr-namespace:Easyfood_Xamarin.PartialViews"
+             x:Class="Easyfood_Xamarin.RestoranJelovnik">
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <SearchBar x:Name="searchPretraga" Placeholder="Naziv, cijena, tip kuhinje..." TextChanged="SearchPretraga_TextChanged" Margin="10"></SearchBar>
-            <ListView x:Name="HranaListItems"
+        <StackLayout>
+            <partials:RequiredLoginNapomena x:Name="requiredLoginPartialView" IsVisible="False"/>
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" Margin="10">
+                <SearchBar x:Name="searchPretraga" Placeholder="Naziv, cijena, tip kuhinje..." TextChanged="SearchPretraga_TextChanged"></SearchBar>
+                <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="True" />
+                <Label x:Name="lblEmptyList" Style="{StaticResource listEmptyLabel}"/>
+                <ListView x:Name="HranaListItems"
                       HasUnevenRows="True"
+                      ItemTapped="HranaListItems_ItemTapped"
                       CachingStrategy="RecycleElement">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell IsEnabled="False">
-                            <Grid Padding="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Grid.Column="0">
-                                    <ImageButton x:Name="imgBtnAdd"
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Orientation="Vertical" VerticalOptions="Center" Grid.Column="0">
+                                        <ImageButton x:Name="imgBtnAdd"
+                                            BackgroundColor="White"
                                             WidthRequest="25"
                                             Source="{Binding HranaAddedButtonImg}"
                                             Command="{Binding HranaAddedCommand}"/>
-                                    <ImageButton x:Name="imgBtnRemove"
+                                        <ImageButton x:Name="imgBtnRemove"
                                             WidthRequest="25"
+                                            BackgroundColor="White"
                                             Source="{Binding HranaRemoveButtonImg}"
                                             Command="{Binding HranaRemovedCommand}"/>
-                                </StackLayout>
-                                <Image x:Name="imgHrana" 
+                                    </StackLayout>
+                                    <Image x:Name="imgHrana" 
                                     VerticalOptions="Start"
                                     WidthRequest="100"
                                     HeightRequest="100"
                                     Aspect="AspectFill"
                                     Grid.Column="1"
                                     Source="{Binding Slika, Converter={StaticResource Key=imgConv}}"></Image>
-                                <StackLayout Orientation="Vertical" Grid.Column="2">
-                                    <StackLayout Orientation="Horizontal">
-                                        <StackLayout Orientation="Vertical" Grid.Column="2" HorizontalOptions="FillAndExpand">
-                                            <Label Text="{Binding TipKuhinjeNaziv}"/>
-                                            <Label Text="{Binding hranaStavka.Naziv}" FontAttributes="Bold"/>
-                                            <Label Text="{Binding Opis}"/>
-                                        </StackLayout>
-                                        <StackLayout Orientation="Vertical"
+                                    <StackLayout Orientation="Vertical" Grid.Column="2">
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout Orientation="Vertical" Grid.Column="2" HorizontalOptions="FillAndExpand">
+                                                <Label Text="{Binding TipKuhinjeNaziv}"/>
+                                                <Label Text="{Binding hranaStavka.Naziv}" FontAttributes="Bold"/>
+                                                <Label Text="{Binding Opis}"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Vertical"
                                             HorizontalOptions="End"
                                             Grid.Column="2">
-                                            <Label Text="{Binding Cijena, StringFormat='{0:N} KM'}"/>
+                                                <Label Text="{Binding Cijena, StringFormat='{0:N} KM'}"/>
+                                            </StackLayout>
                                         </StackLayout>
+                                        <BoxView Style="{StaticResource bvDelimiter}" IsVisible="{Binding StanjeUKorpiVisibility}"/>
+                                        <Label Text="{Binding StanjeUKorpiProp}" HorizontalOptions="End" IsVisible="{Binding StanjeUKorpiVisibility}"/>
                                     </StackLayout>
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                                        <Frame BorderColor="Gray" IsVisible="{Binding StanjeUKorpiVisibility}">
-                                            <Label Text="{Binding StanjeUKorpiProp}"/>
-                                        </Frame>
-                                    </StackLayout>
-                                </StackLayout>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
+            </StackLayout>
         </StackLayout>
 
     </ContentPage.Content>

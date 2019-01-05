@@ -17,45 +17,74 @@ using static Easyfood_Xamarin.ViewModels.HranaVM;
 namespace Easyfood_Xamarin
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class TestVM : ContentPage
+	public partial class RestoranJelovnik : ContentPage
 	{
         private WebApiHelper servis = new WebApiHelper();
 
-        private List<Hrana> listfromapi;
-        private Restoran restoran;
+        private List<Hrana> originalListHrana;
         private HranaVM vm = new HranaVM();
+        private int restoranId;
 
-		public TestVM ()
+        public RestoranJelovnik ()
 		{
 			InitializeComponent ();
             BindingContext = vm;
         }
-        public TestVM(Restoran restoran)
+
+        public RestoranJelovnik(int restoranId)
         {
             InitializeComponent();
             BindingContext = vm; // set binding context to our ViewModel
-            this.restoran = restoran;
+            this.restoranId = restoranId;
         }
 
         protected async override void OnAppearing()
         {
-            HttpResponseMessage response = await servis.GetResponse(String.Format("restorani/{0}/hrana", restoran.RestoranID));
-            if (response.IsSuccessStatusCode)
+            if (Global.Narucilac == null)
             {
-                listfromapi = JsonConvert.DeserializeObject<List<Hrana>>(response.Content.ReadAsStringAsync().Result);
-                vm.SetListHrana(listfromapi);
-                HranaListItems.ItemsSource = vm.listHrana;
+                requiredLoginPartialView.IsVisible = true;
             }
 
+            HttpResponseMessage response = await servis.GetResponse(String.Format("restorani/{0}/hrana", restoranId));
+            if (response.IsSuccessStatusCode)
+            {
+                originalListHrana = JsonConvert.DeserializeObject<List<Hrana>>(response.Content.ReadAsStringAsync().Result);
+                vm.SetListHrana(originalListHrana);
+                HranaListItems.ItemsSource = vm.listHrana;
+            }
+            loaderIndicator.IsRunning = false;
             base.OnAppearing();
         }
 
         private void SearchPretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             string pretraga = searchPretraga.Text;
-            vm.SetListHrana(listfromapi.Where(h => (h.Naziv + " " + h.TipKuhinjeNaziv + " " + h.Opis + " " + h.Cijena).ToLower().Contains(pretraga.ToLower())).ToList());
-            HranaListItems.ItemsSource = null;
-            HranaListItems.ItemsSource = vm.listHrana;
+            var filteredList = originalListHrana.Where(h => (h.Naziv + " " + h.TipKuhinjeNaziv + " " + h.Opis + " " + h.Cijena).ToLower().Contains(pretraga.ToLower())).ToList();
+
+            /***
+             * Ako su liste iste (elementi u listama) nemoj džaba mijenjat listview source 
+             * (REF. POGLEDAJ NarudzbePage.SearchPretraga_TextChanged())
+             * u ovom slučaju ne možemo iskoristit .SequenceEqual jer nam liste nisu isto tipa (vm.listHrana vs. templist), 
+             * pa zbog tog ćemo napravit i porediti ID hashset-ove
+             **/
+            var vmListHash = new HashSet<int>(vm.listHrana.Select(h => h.hranaStavka.HranaID));
+            var filteredListHash = new HashSet<int>(filteredList.Select(h => h.HranaID));
+
+            if (!vmListHash.SequenceEqual(filteredListHash))
+            {
+                vm.SetListHrana(filteredList);
+                HranaListItems.ItemsSource = null;
+                HranaListItems.ItemsSource = vm.listHrana;
+
+                lblEmptyList.IsVisible = filteredListHash.Count == 0 ? true : false;
+            }
+        }
+
+        private void HranaListItems_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            // Nemoj selektovati (highlight) iteme lise
+            if (e == null) return;
+            ((ListView)sender).SelectedItem = null;
         }
     }
 }

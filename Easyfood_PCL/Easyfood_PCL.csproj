@@ -57,13 +57,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Blok.cs" />
     <Compile Include="Model\Grad.cs" />
     <Compile Include="Model\Hrana.cs" />
     <Compile Include="Model\Narucilac.cs" />
     <Compile Include="Model\Narudzba.cs" />
+    <Compile Include="Model\Recenzija.cs" />
     <Compile Include="Model\Restoran.cs" />
     <Compile Include="Model\StavkaNarudzbe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\EnumerableExtensions.cs" />
     <Compile Include="Util\UIHelper.cs" />
     <Compile Include="Util\WebApiHelper.cs" />
   </ItemGroup>

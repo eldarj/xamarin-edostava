@@ -33,7 +33,9 @@ namespace Easyfood_Xamarin.Model
         public string BlokGrad {
             get
             {
-                return this.BlokNaziv + ", " + this.GradNaziv;
+                return ( (this.BlokNaziv + this.GradNaziv).Length > 0 ) ? 
+                    this.BlokNaziv + ", " + this.GradNaziv : 
+                    "";
             }
         }
     }

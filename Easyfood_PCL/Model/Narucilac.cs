@@ -19,6 +19,7 @@ namespace Easyfood_Xamarin.Model
         public System.DateTime DatumRegistracije { get; set; }
         public string Adresa { get; set; }
         public Nullable<int> BlokID { get; set; }
+        public Nullable<int> GradID { get; set; }
         public int UlogaKorisnikaID { get; set; }
     }
 }

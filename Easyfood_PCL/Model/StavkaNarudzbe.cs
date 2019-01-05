@@ -14,7 +14,5 @@ namespace Easyfood_Xamarin.Model
         public int Kolicina { get; set; }
 
         public Hrana Hrana { get; set; }
-
-
     }
 }

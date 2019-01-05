@@ -3,58 +3,98 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Easyfood_Xamarin.Model;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
+using Easyfood_Xamarin.Helpers;
 
 namespace Easyfood_Xamarin
 {
     public partial class RestoraniPage : ContentPage
     {
+        private WebApiHelper servisRestorani = new WebApiHelper("restorani");
         private WebApiHelper servis = new WebApiHelper();
-        private List<Grad> gradovi;
         private List<Restoran> listRestorani;
+
         public RestoraniPage()
         {
             InitializeComponent();
             var mainDisplay = DeviceDisplay.MainDisplayInfo;
             var displayWidth = mainDisplay.Width;
+
+            // TODO: xamarin.Essentials - provjeri veličinu ekrana za u zavisnosti od tog podesi layout
         }
 
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
-            HttpResponseMessage response = await servis.GetResponse("locations/gradovi");
-            if (response.IsSuccessStatusCode)
+            if (Global.Narucilac == null)
             {
-                gradovi = JsonConvert.DeserializeObject<List<Grad>>(response.Content.ReadAsStringAsync().Result);
-                pickerGradovi.ItemsSource = gradovi;
-                pickerGradovi.ItemDisplayBinding = new Binding("Naziv");
+                requiredLoginPartialView.IsVisible = true;
             }
-            HttpResponseMessage responseRestorani = await servis.GetResponse("restorani");
-            if (responseRestorani.IsSuccessStatusCode)
+
+            if (listRestorani == null) // možda već imamo podatke (npr. back-button)
             {
-                listRestorani = JsonConvert.DeserializeObject<List<Restoran>>(responseRestorani.Content.ReadAsStringAsync().Result);
-                listViewRestorani.ItemsSource = listRestorani;
+                loadDataFromApi();
             }
 
             base.OnAppearing();
         }
-        
+
+        private async void loadDataFromApi()
+        {
+            containerApiError.IsVisible = false;
+            loaderIndicator.IsRunning = true;
+            try
+            {
+                HttpResponseMessage response = await servis.GetResponse("locations/gradovi");
+                if (response.IsSuccessStatusCode)
+                {
+                    List<Grad> gradovi = JsonConvert.DeserializeObject<List<Grad>>(response.Content.ReadAsStringAsync().Result);
+                    gradovi.Insert(0, new Grad
+                    {
+                        Naziv = "Svi gradovi"
+                    });
+                    pickerGradovi.ItemsSource = gradovi;
+                    pickerGradovi.ItemDisplayBinding = new Binding("Naziv");
+                    pickerGradovi.SelectedIndex = 0;
+                }
+
+                HttpResponseMessage responseRestorani = await servisRestorani.GetResponse(new Dictionary<string, int> { { "status", 3 } });
+                if (responseRestorani.IsSuccessStatusCode)
+                {
+                    listRestorani = JsonConvert.DeserializeObject<List<Restoran>>(responseRestorani.Content.ReadAsStringAsync().Result);
+                    listViewRestorani.ItemsSource = listRestorani;
+                }
+            }
+            catch (Exception ex)
+            {
+                containerApiError.IsVisible = true;
+            }
+            loaderIndicator.IsRunning = false;
+        }
+
+        private void BtnReloadPodatke_Clicked(object sender, EventArgs e)
+        {
+            loadDataFromApi();
+        }
+
         private void PickerGradovi_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (pickerGradovi.SelectedItem != null)
+            try
             {
                 Grad selected = pickerGradovi.SelectedItem as Grad;
-                List<Restoran> temp = listRestorani.Where(r => r.GradID == selected.GradID).ToList();
-                if (temp.Count == 0)
+                List<Restoran> restoraniPoGradu = selected.GradID == 0 ? listRestorani : listRestorani.Where(r => r.GradID == selected.GradID).ToList();
+                if (restoraniPoGradu.Count == 0)
                 {
-                    temp.Add(new Restoran{ Naziv = "Nema restorana za traženi grad" });
+                    restoraniPoGradu.Add(new Restoran{ Naziv = "Nema restorana", Opis = "Molimo odaberite drugi grad" });
                 }
                 listViewRestorani.ItemsSource = null;
-                listViewRestorani.ItemsSource = temp;
+                listViewRestorani.ItemsSource = restoraniPoGradu;
+            }
+            catch (NullReferenceException ex)
+            {
+                // još nije setovan...
             }
         }
 
@@ -62,7 +102,7 @@ namespace Easyfood_Xamarin
         {
             if (e.Item != null)
             {
-                Navigation.PushAsync(new TestVM(e.Item as Restoran));
+                Navigation.PushAsync(new RestoraniDetailsPage(e.Item as Restoran));
             }
         }
     }

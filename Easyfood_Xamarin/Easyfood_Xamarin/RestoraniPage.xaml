@@ -2,40 +2,44 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Easyfood_Xamarin.Converter"
+             xmlns:partials="clr-namespace:Easyfood_Xamarin.PartialViews"
              x:Class="Easyfood_Xamarin.RestoraniPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout HorizontalOptions="Center">
-        <StackLayout Padding="10">
-            <Picker x:Name="pickerGradovi" Title="Odaberite grad" SelectedIndexChanged="PickerGradovi_SelectedIndexChanged"/>
-        </StackLayout>
-        <ListView x:Name="listViewRestorani" 
+    <StackLayout Orientation="Vertical">
+        <partials:RequiredLoginNapomena x:Name="requiredLoginPartialView" IsVisible="False"/>
+        <StackLayout HorizontalOptions="Center">
+            <Picker x:Name="pickerGradovi" Title="Restorani po gradovima" SelectedIndexChanged="PickerGradovi_SelectedIndexChanged"/>
+            <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="True" />
+            <StackLayout x:Name="containerApiError" Orientation="Vertical" IsVisible="False">
+                <Label Text="Došlo je do greške kod učitavanja podataka. Pokušajte ponovo" TextColor="Red" FontSize="11" HorizontalOptions="Center"/>
+                <Button x:Name="btnReloadPodatke" Text="Učitaj podatke" HorizontalOptions="Center" Clicked="BtnReloadPodatke_Clicked"/>
+            </StackLayout>
+            <ListView x:Name="listViewRestorani" 
                   HasUnevenRows="True" 
                   ItemTapped="ListViewRestorani_ItemTapped" 
                   HorizontalOptions="Center">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="15">
-                            <Image x:Name="imgRestoran"
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="15">
+                                <Image x:Name="imgRestoran"
                                    Aspect="AspectFill"
                                    Source="{Binding Slika, Converter={StaticResource Key=imgConv}}">
-                            </Image>
-                            <StackLayout VerticalOptions="Start" Padding="10">
-                                <Label Text="{Binding Naziv}" FontAttributes="Bold"/>
-                                <StackLayout Orientation="Horizontal">
+                                </Image>
+                                <StackLayout VerticalOptions="Start" Padding="10">
+                                    <Label Text="{Binding Naziv}" FontAttributes="Bold"/>
                                     <Label Text="{Binding BlokGrad}"/>
+                                    <Label Text="{Binding Opis}"/>
                                 </StackLayout>
-                                <Label Text="{Binding Opis}"/>
                             </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </StackLayout>
-
 </ContentPage>

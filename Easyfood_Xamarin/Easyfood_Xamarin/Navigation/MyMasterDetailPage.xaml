@@ -8,11 +8,12 @@
   <MasterDetailPage.Master>
     <nav:MyMasterDetailPageMaster x:Name="MasterPage" />
   </MasterDetailPage.Master>
-  <MasterDetailPage.Detail>
+  <!-- Nećemo koristiti xaml način kreiranja defaultnog page-a, već ćemo koristit code-behind x:Class -->
+  <!--<MasterDetailPage.Detail>
     <NavigationPage>
       <x:Arguments>
         <pages:RestoraniPage />
       </x:Arguments>
     </NavigationPage>
-  </MasterDetailPage.Detail>
+  </MasterDetailPage.Detail>-->
 </MasterDetailPage>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Easyfood_Xamarin.Converter"
+             x:Class="Easyfood_Xamarin.NarudzbeDetailsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:LabelCapitalizer x:Key="lblCaps"></converters:LabelCapitalizer>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView HorizontalOptions="CenterAndExpand" Margin="10" HorizontalScrollBarVisibility="Always">
+            <StackLayout>
+                <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="True"/>
+                <StackLayout x:Name="containerApiError" Orientation="Vertical" IsVisible="False">
+                    <Label Text="Došlo je do greške kod učitavanja podataka. Pokušajte ponovo" TextColor="Red" FontSize="11" HorizontalOptions="Center"/>
+                    <Button x:Name="btnReloadPodatke" Text="Učitaj podatke" HorizontalOptions="Center" Clicked="BtnReloadPodatke_Clicked"/>
+                </StackLayout>
+                <StackLayout x:Name="mainNarudzbaInfoHolder" IsVisible="False">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout  Orientation="Vertical" HorizontalOptions="StartAndExpand" Margin="20">
+                            <Label Text="{Binding Source='UID Šifra', Converter={StaticResource Key=lblCaps}}"
+                           Style="{StaticResource infoLabelBold}" 
+                           HorizontalOptions="StartAndExpand"/>
+                            <Label Text="{Binding SifraString}" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Margin="20">
+                            <Label Text="{Binding Source='Ukupna cijena', Converter={StaticResource Key=lblCaps}}"
+                           Style="{StaticResource infoLabelBold}" 
+                           HorizontalOptions="StartAndExpand"/>
+                            <Label Text="{Binding UkupnaCijenaFormatted}" 
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" Margin="20">
+                        <BoxView Style="{StaticResource bvDelimiter}"/>
+                        <Label Text="{Binding Source='Datum i vrijeme naručivanja', Converter={StaticResource Key=lblCaps}}" 
+                               Style="{StaticResource infoLabelBold}" />
+                        <Label Text="{Binding Source='Datum', Converter={StaticResource Key=lblCaps}}" 
+                               Style="{StaticResource infoLabel}" />
+                        <Label Text="{Binding DatumVrijemeFormatted}"/>
+                        <Label Text="{Binding Source='Vrijeme', Converter={StaticResource Key=lblCaps}}" 
+                               Style="{StaticResource infoLabel}" />
+                        <Label Text="{Binding VrijemeFormatted}"/>
+                      <BoxView Style="{StaticResource bvDelimiter}"/>
+
+                        <Label Text="{Binding Source='Adresa za dostavu', Converter={StaticResource Key=lblCaps}}"
+                               Style="{StaticResource infoLabelBold}"/>
+                        <Label Text="{Binding Source='Adresa', Converter={StaticResource Key=lblCaps}}"  
+                               Style="{StaticResource infoLabel}"/>
+                        <Label Text="{Binding Adresa}"/>
+                        <Label Text="{Binding Source='Blok', Converter={StaticResource Key=lblCaps}}"  
+                               Style="{StaticResource infoLabel}"/>
+                        <Label Text="{Binding BlokNaziv}"/>
+
+                        <Label Text="{Binding Source='Grad', Converter={StaticResource Key=lblCaps}}"  
+                                       Style="{StaticResource infoLabel}"/>
+                        <Label Text="{Binding GradNaziv}"/>
+                      <BoxView Style="{StaticResource bvDelimiter}"/>
+
+                        <Label Text="{Binding Source='Status', Converter={StaticResource Key=lblCaps}}"
+                       Style="{StaticResource infoLabelBold}"/>
+                        <Label Text="{Binding StatusNarudzbe}"/>
+
+                        <BoxView Style="{StaticResource bvDelimiter}"/>
+                        <Label Text="{Binding Source='Restorani iz kojih je naručena hrana', Converter={StaticResource Key=lblCaps}}"
+                                Style="{StaticResource infoLabelBold}"/>
+                        <StackLayout x:Name="contRestoraniNarudzbe"/>
+
+                        <Label Text="{Binding Source='Naručena hrana', Converter={StaticResource Key=lblCaps}}"
+                       Style="{StaticResource infoLabelBold}"/>
+                        <StackLayout x:Name="contHranaNarudzbe"/>
+
+                    </StackLayout>
+                    <Button x:Name="BtnIzbrisiNarudzbu"  Text="Izbriši narudžbu" Clicked="BtnIzbrisiNarudzbu_Clicked" HorizontalOptions="End"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

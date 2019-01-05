@@ -133,6 +133,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\easyfood_icon_square.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\star_dark.png" />
+  </ItemGroup>
   <Import Project="..\Easyfood_Xamarin\Easyfood_Xamarin.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

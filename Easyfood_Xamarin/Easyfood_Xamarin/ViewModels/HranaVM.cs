@@ -61,13 +61,13 @@ namespace Easyfood_Xamarin.ViewModels
                 HranaAddedButtonImg = "add_red.png";
                 HranaRemoveButtonImg = "minus_red.png";
 
-                if (Global.narudzba == null)
+                if (Global.Narudzba == null)
                 {
-                    Global.narudzba = new Narudzba
+                    Global.Narudzba = new Narudzba
                     {
-                        Adresa = Global.Narucilac.Adresa,
-                        BlokID = Global.Narucilac.BlokID,
-                        KorisnikID = Global.Narucilac.KorisnikID,
+                        Adresa = Global.GetNarucilacAdresa,
+                        BlokID = Global.Narucilac?.BlokID,
+                        NarucilacID = Global.Narucilac?.KorisnikID,
                         Sifra = Guid.NewGuid(),
                         UkupnaCijena = 0
                     };
@@ -80,7 +80,7 @@ namespace Easyfood_Xamarin.ViewModels
                 Kolicina--;
                 if (Kolicina < 1)
                 {
-                    StanjeUKorpiProp = "";
+                    Kolicina = 0;
                     StanjeUKorpiVisibility = false;
                     HranaAddedButtonImg = "add.png";
                     HranaRemoveButtonImg = "minus.png";
@@ -90,7 +90,7 @@ namespace Easyfood_Xamarin.ViewModels
                     StanjeUKorpiProp = String.Format("Stanje u korpi: x{0} - ukupno {1} KM", Kolicina, Kolicina * Cijena);
                 }
 
-                if (Global.narudzba != null)
+                if (Global.Narudzba != null)
                 {
                     Global.RemoveHrana(hranaStavka);
                 }
@@ -108,31 +108,31 @@ namespace Easyfood_Xamarin.ViewModels
         public void SetListHrana(List<Hrana> list)
         {
             this.listHrana = new List<HranaListItem>(list
-                    .Select(s => {
+                .Select(s => {
 
-                        HranaListItem sItem = new HranaListItem
-                        {
-                            hranaStavka = s,
-                            TipKuhinjeNaziv = s.TipKuhinjeNaziv,
-                            Opis = s.Opis,
-                            Slika = s.Slika,
-                            Cijena = s.Cijena
-                        };
+                    HranaListItem sItem = new HranaListItem
+                    {
+                        hranaStavka = s,
+                        TipKuhinjeNaziv = s.TipKuhinjeNaziv,
+                        Opis = s.Opis,
+                        Slika = s.Slika,
+                        Cijena = s.Cijena
+                    };
 
-                        StavkaNarudzbe inKorpa = null;
-                        if (Global.narudzba != null && Global.narudzba.HranaStavke.Where(h => h.HranaID == s.HranaID).SingleOrDefault() != null)
-                        {
-                            inKorpa = Global.narudzba.HranaStavke.Where(h => h.HranaID == s.HranaID).SingleOrDefault();
-                            sItem.Kolicina = inKorpa.Kolicina;
-                            sItem.StanjeUKorpiProp = String.Format("Stanje u korpi: x{0} - ukupno {1} KM", sItem.Kolicina, sItem.Cijena);
-                            sItem.StanjeUKorpiVisibility = true;
-                            sItem.HranaAddedButtonImg = "add_red.png";
-                            sItem.HranaRemoveButtonImg = "minus_red.png";
-                        }
+                    StavkaNarudzbe inKorpa = null;
+                    if (Global.Narudzba != null && Global.Narudzba.StavkeNarudzbe.Where(h => h.HranaID == s.HranaID).SingleOrDefault() != null)
+                    {
+                        inKorpa = Global.Narudzba.StavkeNarudzbe.Where(h => h.HranaID == s.HranaID).SingleOrDefault();
+                        sItem.Kolicina = inKorpa.Kolicina;
+                        sItem.StanjeUKorpiProp = String.Format("Stanje u korpi: x{0} - ukupno {1} KM", sItem.Kolicina, sItem.Cijena);
+                        sItem.StanjeUKorpiVisibility = true;
+                        sItem.HranaAddedButtonImg = "add_red.png";
+                        sItem.HranaRemoveButtonImg = "minus_red.png";
+                    }
 
-                        return sItem;
-                    })
-                    .ToList());
+                    return sItem;
+                })
+                .ToList());
         }
     }
 }

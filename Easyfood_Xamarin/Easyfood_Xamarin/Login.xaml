@@ -3,15 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Easyfood_Xamarin.Login">
     <ContentPage.Content>
-        <StackLayout
-            Margin="10"
-            VerticalOptions="CenterAndExpand">
+        <StackLayout Margin="10" VerticalOptions="CenterAndExpand">
+            <Label x:Name="UsernameError" IsVisible="False" TextColor="Red" FontSize="11"/>
             <Entry x:Name="inputUsername" Placeholder="Username" Text="almasa" />
+            <Label x:Name="PasswordError" IsVisible="False" TextColor="Red" FontSize="11"/>
             <Entry x:Name="inputPassword" Placeholder="Password" Text="almasa" IsPassword="True" />
             <Button x:Name="btnLogin" Text="Login" Clicked="BtnLogin_Clicked"/>
             <Label Text="Nemate račun?"/>
             <Button x:Name="btnRegistracija" Text="Registrujte se" Clicked="BtnRegistracija_Clicked"/>
-            <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="false" />
+            <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="False" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

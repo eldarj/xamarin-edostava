@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:partials="clr-namespace:Easyfood_Xamarin.PartialViews"
+             xmlns:converters="clr-namespace:Easyfood_Xamarin.Converter"
+             x:Class="Easyfood_Xamarin.RestoraniDetailsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"/>
+            <converters:ZvjezdicaGenerator x:Key="zvjezdicaConv"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <partials:RequiredLoginNapomena x:Name="requiredLoginPartialView" IsVisible="True"/>
+            <StackLayout HorizontalOptions="Center">
+                <StackLayout VerticalOptions="Start" Padding="10" Spacing="10">
+                    <!-- Glavni podaci o restoranu -->
+                    <StackLayout Spacing="10">
+                        <Image Source="{Binding Slika, Converter={StaticResource imgConv}}" Aspect="AspectFill"></Image>
+                        <Label Text="{Binding Naziv}" Style="{StaticResource titleLabel}"/>
+                        <Label Text="{Binding Opis}"/>
+                        <BoxView Style="{StaticResource bvDelimiter}"/>
+                    </StackLayout>
+                    <!-- Kontakt -->
+                    <StackLayout Spacing="10">
+                        <Label Text="KONTAKT" Style="{StaticResource infoLabelBold}"/>
+                        <Label Text="{Binding AdresaFull}"/>
+                        <Label Text="{Binding Telefon}"/>
+                        <Label Text="{Binding Email}"/>
+                        <Label Text="{Binding WebUrl}"/>
+                        <BoxView Style="{StaticResource bvDelimiter}"/>
+                    </StackLayout>
+                    <!-- Buttons -->
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <Button x:Name="BtnGotoJelovnik" Text="Jelovnik" Clicked="BtnGotoJelovnik_Clicked" HorizontalOptions="Start"/>
+                        <Button x:Name="BtnGotoRecenzije" Text="Ocjene i komentari" Clicked="BtnGotoRecenzije_Clicked" HorizontalOptions="Start"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

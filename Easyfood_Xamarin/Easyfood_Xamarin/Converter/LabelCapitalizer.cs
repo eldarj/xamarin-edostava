@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Globalization;
-using System.IO;
 using Xamarin.Forms;
 
 namespace Easyfood_Xamarin.Converter
 {
-    // Konverter za blob slike
-    public class ImageConverter : IValueConverter
+    // Primjer konvertera string.toupper()........
+    class LabelCapitalizer : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -15,8 +14,8 @@ namespace Easyfood_Xamarin.Converter
                 return null;
             }
 
-            byte[] bytes = value as byte[];
-            return ImageSource.FromStream(() => new MemoryStream(bytes));
+            string s = value as string;
+            return s.ToUpper();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

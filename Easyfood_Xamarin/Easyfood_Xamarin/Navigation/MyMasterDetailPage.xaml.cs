@@ -12,9 +12,15 @@ namespace Easyfood_Xamarin.Navigation
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MyMasterDetailPage : MasterDetailPage
     {
-        public MyMasterDetailPage()
+        public MyMasterDetailPage(ContentPage startPage = null)
         {
             InitializeComponent();
+            
+            // Ako je startPage null otvori nam defaultno RestoraniPage()
+            Detail = startPage != null ?
+                new NavigationPage(startPage) :
+                new NavigationPage(new RestoraniPage());
+
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
         }
 

@@ -135,9 +135,11 @@
     <Content Include="easyfood_icon_red.png" />
     <Content Include="easyfood_icon_square.png" />
     <Content Include="easyfood_icon.png" />
-    <Content Include="minus-red.png" />
+    <Content Include="minus_red.png" />
     <Content Include="minus.png" />
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="star_dark.png" />
+    <Content Include="star.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

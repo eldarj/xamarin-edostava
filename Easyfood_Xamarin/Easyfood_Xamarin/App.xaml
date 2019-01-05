@@ -3,6 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Easyfood_Xamarin.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Style x:Key="errorLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="Red"/>
+                <Setter Property="FontSize" Value="11"/>
+            </Style>
+            <Style x:Key="listEmptyLabel" TargetType="Label">
+                <Setter Property="Text" Value="Nema rezultata pretrage"/>
+                <Setter Property="IsVisible" Value="False"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="Red"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            <Style x:Key="infoLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="Gray"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            <Style x:Key="titleLabel" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+            <Style x:Key="infoLabelBold" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Gray"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            <Style x:Key="btnChip" TargetType="Button">
+                <Setter Property="IsEnabled" Value="False"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="CornerRadius" Value="10"/>
+            </Style>
+            <Style x:Key="napomenaBox" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="Orange"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+            <Style x:Key="napomenaLoginRequiredLabel" TargetType="Label">
+                <Setter Property="Text" Value="*Da biste kreirali narudžbu, moraćete biti logirani."/>
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+            <Style x:Key="bvDelimiter" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="BackgroundColor" Value="LightGray"/>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

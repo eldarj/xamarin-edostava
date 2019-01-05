@@ -18,6 +18,6 @@ namespace Easyfood_Xamarin.Model
         public int TipKuhinjeID { get; set; }
         public string TipKuhinjeNaziv { get; set; }
         public Nullable<int> RestoranID { get; set; }
-        public string StringForPretraga { get { return this.Naziv + " " + this.Cijena + " " + this.Opis + " " + this.TipKuhinjeNaziv; } }
+        public string RestoranNaziv { get; set; }
     }
 }
