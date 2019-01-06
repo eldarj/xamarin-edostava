@@ -44,7 +44,7 @@ namespace Easyfood_Xamarin
         private async void loadDataFromApi()
         {
             containerApiError.IsVisible = false;
-            loaderIndicator.IsRunning = true;
+            loaderIndicator.IsRunning = loaderIndicator.IsVisible = true;
             try
             {
                 HttpResponseMessage response = await servis.GetResponse("locations/gradovi");
@@ -53,7 +53,7 @@ namespace Easyfood_Xamarin
                     List<Grad> gradovi = JsonConvert.DeserializeObject<List<Grad>>(response.Content.ReadAsStringAsync().Result);
                     gradovi.Insert(0, new Grad
                     {
-                        Naziv = "Svi gradovi"
+                        Naziv = "Restorani iz svih gradova"
                     });
                     pickerGradovi.ItemsSource = gradovi;
                     pickerGradovi.ItemDisplayBinding = new Binding("Naziv");
@@ -65,13 +65,16 @@ namespace Easyfood_Xamarin
                 {
                     listRestorani = JsonConvert.DeserializeObject<List<Restoran>>(responseRestorani.Content.ReadAsStringAsync().Result);
                     listViewRestorani.ItemsSource = listRestorani;
+                } else
+                {
+                    containerApiError.IsVisible = true;
                 }
             }
             catch (Exception ex)
             {
                 containerApiError.IsVisible = true;
             }
-            loaderIndicator.IsRunning = false;
+            loaderIndicator.IsRunning = loaderIndicator.IsVisible = false;
         }
 
         private void BtnReloadPodatke_Clicked(object sender, EventArgs e)

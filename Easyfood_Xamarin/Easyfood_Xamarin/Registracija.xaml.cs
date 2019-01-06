@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -21,14 +19,11 @@ namespace Easyfood_Xamarin
 	{
         private WebApiHelper servis = new WebApiHelper();
         private List<Blok> listBlokovi;
-        private List<Grad> listGradovi;
-
         private NarucilacValidator validacija;
 
         public Registracija ()
 		{
 			InitializeComponent ();
-            this.Title = "Registracija";
         }
 
         protected override void OnAppearing()
@@ -43,11 +38,6 @@ namespace Easyfood_Xamarin
             base.OnAppearing();
         }
 
-        private void BtnReloadPodatke_Clicked(object sender, EventArgs e)
-        {
-            LoadDataFromApi();
-        }
-
         private async void LoadDataFromApi()
         {
             containerApiError.IsVisible = false;
@@ -57,6 +47,7 @@ namespace Easyfood_Xamarin
                 HttpResponseMessage responseBlokovi = await servis.GetResponse("locations/blokovi");
                 if (responseBlokovi.IsSuccessStatusCode)
                 {
+                    BtnRegistracija.IsEnabled = true;
                     listBlokovi = JsonConvert.DeserializeObject<List<Blok>>(responseBlokovi.Content.ReadAsStringAsync().Result);
 
                     pickerLokacija.ItemsSource = listBlokovi;
@@ -80,7 +71,6 @@ namespace Easyfood_Xamarin
             }
             loaderIndicator.IsRunning = false;
         }
-
         private async void Registracija_Clicked(object sender, EventArgs e)
         {
             // provjeri formu
@@ -123,14 +113,11 @@ namespace Easyfood_Xamarin
                 if (response.IsSuccessStatusCode)
                 {
                     DisplayAlert("Uspjeh", "Uspješno ste se registrovali!", "OK");
-                    if (Global.OnUserAuthGoToKorpaFlag)
-                    {
-                        Navigation.PushAsync(new KorpaPage());
-                    }
-                    else
-                    {
-                        Navigation.PushAsync(new RestoraniPage());
-                    }
+
+                    Global.Narucilac = JsonConvert.DeserializeObject<Narucilac>(response.Content.ReadAsStringAsync().Result);
+                    App.Current.MainPage = Global.OnUserAuthGoToKorpaFlag ?
+                        new Navigation.MyMasterDetailPage(new KorpaPage()) :
+                        new Navigation.MyMasterDetailPage();
                 }
                 else
                 {
@@ -141,6 +128,16 @@ namespace Easyfood_Xamarin
             {
                 DisplayAlert("Neuspjeh", "Greška sa servisom, pokušajte ponovo", "OK");
             }
+        }
+
+        private void BtnGotoLogin_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Login());
+        }
+
+        private void BtnReloadPodatke_Clicked(object sender, EventArgs e)
+        {
+            LoadDataFromApi();
         }
     }
 }

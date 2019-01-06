@@ -4,9 +4,31 @@
              x:Class="Easyfood_Xamarin.App">
     <Application.Resources>
         <ResourceDictionary>
+            <!-- GEN. UI ELEMENTS -->
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="Red"/>
+                <Setter Property="BarTextColor" Value="White"/>
+            </Style>
+            <!-- LABELS -->
             <Style x:Key="errorLabel" TargetType="Label">
                 <Setter Property="TextColor" Value="Red"/>
                 <Setter Property="FontSize" Value="11"/>
+            </Style>
+            <Style x:Key="infoLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="Gray"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            <Style x:Key="infoLabelBold" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Gray"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            <Style x:Key="titleLabel" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+            <Style x:Key="opisLabel" TargetType="Label">
+                <Setter Property="WidthRequest" Value="650"/>
             </Style>
             <Style x:Key="listEmptyLabel" TargetType="Label">
                 <Setter Property="Text" Value="Nema rezultata pretrage"/>
@@ -15,31 +37,36 @@
                 <Setter Property="TextColor" Value="Red"/>
                 <Setter Property="FontSize" Value="14"/>
             </Style>
-            <Style x:Key="infoLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="Gray"/>
-                <Setter Property="FontSize" Value="14"/>
+            <Style x:Key="napomenaLoginRequiredLabel" TargetType="Label">
+                <Setter Property="Text" Value="*Da biste kreirali narudžbu, pisali komentare isl. moraćete biti logirani."/>
+                <Setter Property="FontSize" Value="12"/>
             </Style>
-            <Style x:Key="titleLabel" TargetType="Label">
-                <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="FontSize" Value="18"/>
-            </Style>
-            <Style x:Key="infoLabelBold" TargetType="Label">
-                <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="TextColor" Value="Gray"/>
-                <Setter Property="FontSize" Value="14"/>
-            </Style>
+            <!-- BUTTONS AND IMAGEBUTTONS -->
             <Style x:Key="btnChip" TargetType="Button">
                 <Setter Property="IsEnabled" Value="False"/>
                 <Setter Property="HorizontalOptions" Value="Start"/>
                 <Setter Property="CornerRadius" Value="10"/>
             </Style>
+            <Style x:Key="Zvjezdica" TargetType="ImageButton">
+                <Setter Property="WidthRequest" Value="15"/>
+            </Style>
+            <Style TargetType="ImageButton">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+            <!-- STACKLAYOUTS AND GROUP-VIEWS -->
             <Style x:Key="napomenaBox" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="Orange"/>
+                <Setter Property="BackgroundColor" Value="Yellow"/>
                 <Setter Property="Padding" Value="5"/>
             </Style>
-            <Style x:Key="napomenaLoginRequiredLabel" TargetType="Label">
-                <Setter Property="Text" Value="*Da biste kreirali narudžbu, moraćete biti logirani."/>
-                <Setter Property="FontSize" Value="12"/>
+            <Style x:Key="Container" TargetType="StackLayout">
+                <Setter Property="WidthRequest" Value="750"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="750"/>
+            </Style>
+            <Style x:Key="ScrollContainer" TargetType="ScrollView">
+                <Setter Property="WidthRequest" Value="750"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="750"/>
             </Style>
             <Style x:Key="bvDelimiter" TargetType="BoxView">
                 <Setter Property="HeightRequest" Value="1"/>

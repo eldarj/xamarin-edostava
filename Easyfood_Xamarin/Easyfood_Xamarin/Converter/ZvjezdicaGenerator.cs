@@ -11,8 +11,8 @@ namespace Easyfood_Xamarin.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            // Imamo 5 zvjezdica pa zbog tog
-            // IF: broj zvjezdice manji od ocjene pokaži kao star.png
+            // Imamo 5 zvjezdica koje hoćemo prikazati kao 'uključene' ili samo tamne...
+            // IF: trenutni broj zvjezdice manji od ocjene pokaži kao star.png
             // ELSE: prikaži kao tamnu verziju star_dark.png
             if (System.Convert.ToInt32(parameter) <= System.Convert.ToInt32(value))
             {

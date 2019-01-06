@@ -22,10 +22,10 @@
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
                     <StackLayout Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-                        <Image Source="easyfood_icon.png" WidthRequest="100"/>
+                        <Image Source="easyfood_icon_red.png"/>
                         <StackLayout Orientation="Vertical" VerticalOptions="Center">
-                            <Label Text="Easyfood"/>
-                            <Label Text="eldar.jahijagić@edu.fit.ba"/>
+                            <Label Text="Easyfood" Style="{StaticResource titleLabel}" TextColor="White"/>
+                            <Label Text="eldar.jahijagić@edu.fit.ba" TextColor="White" />
                         </StackLayout>
                     </StackLayout>  
                 </Grid>
@@ -34,13 +34,13 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                            <Image WidthRequest="{Binding ImageSourceWidth}" 
+                            <Image WidthRequest="20" 
                                    Source="{Binding ImageSource}"
                                    VerticalOptions="Center"></Image>
                             <Label VerticalOptions="FillAndExpand" 
                                     VerticalTextAlignment="Center" 
                                     Text="{Binding Title}" 
-                                    FontSize="24"/>         
+                                    FontSize="18"/>         
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

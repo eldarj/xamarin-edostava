@@ -9,8 +9,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView HorizontalOptions="CenterAndExpand" Margin="10" HorizontalScrollBarVisibility="Always">
-            <StackLayout>
+        <ScrollView HorizontalOptions="CenterAndExpand" Padding="5" VerticalScrollBarVisibility="Always">
+            <StackLayout WidthRequest="450">
                 <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="True"/>
                 <StackLayout x:Name="containerApiError" Orientation="Vertical" IsVisible="False">
                     <Label Text="Došlo je do greške kod učitavanja podataka. Pokušajte ponovo" TextColor="Red" FontSize="11" HorizontalOptions="Center"/>
@@ -18,13 +18,13 @@
                 </StackLayout>
                 <StackLayout x:Name="mainNarudzbaInfoHolder" IsVisible="False">
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <StackLayout  Orientation="Vertical" HorizontalOptions="StartAndExpand" Margin="20">
+                        <StackLayout  Orientation="Vertical" HorizontalOptions="StartAndExpand" Margin="10">
                             <Label Text="{Binding Source='UID Šifra', Converter={StaticResource Key=lblCaps}}"
                            Style="{StaticResource infoLabelBold}" 
                            HorizontalOptions="StartAndExpand"/>
                             <Label Text="{Binding SifraString}" FontAttributes="Bold"/>
                         </StackLayout>
-                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Margin="20">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Margin="10">
                             <Label Text="{Binding Source='Ukupna cijena', Converter={StaticResource Key=lblCaps}}"
                            Style="{StaticResource infoLabelBold}" 
                            HorizontalOptions="StartAndExpand"/>
@@ -34,7 +34,7 @@
                            HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                     </StackLayout>
-                    <StackLayout Orientation="Vertical" Margin="20">
+                    <StackLayout Orientation="Vertical" Margin="10">
                         <BoxView Style="{StaticResource bvDelimiter}"/>
                         <Label Text="{Binding Source='Datum i vrijeme naručivanja', Converter={StaticResource Key=lblCaps}}" 
                                Style="{StaticResource infoLabelBold}" />
@@ -44,7 +44,7 @@
                         <Label Text="{Binding Source='Vrijeme', Converter={StaticResource Key=lblCaps}}" 
                                Style="{StaticResource infoLabel}" />
                         <Label Text="{Binding VrijemeFormatted}"/>
-                      <BoxView Style="{StaticResource bvDelimiter}"/>
+                        <BoxView Style="{StaticResource bvDelimiter}"/>
 
                         <Label Text="{Binding Source='Adresa za dostavu', Converter={StaticResource Key=lblCaps}}"
                                Style="{StaticResource infoLabelBold}"/>
@@ -58,10 +58,10 @@
                         <Label Text="{Binding Source='Grad', Converter={StaticResource Key=lblCaps}}"  
                                        Style="{StaticResource infoLabel}"/>
                         <Label Text="{Binding GradNaziv}"/>
-                      <BoxView Style="{StaticResource bvDelimiter}"/>
+                        <BoxView Style="{StaticResource bvDelimiter}"/>
 
                         <Label Text="{Binding Source='Status', Converter={StaticResource Key=lblCaps}}"
-                       Style="{StaticResource infoLabelBold}"/>
+                                Style="{StaticResource infoLabelBold}"/>
                         <Label Text="{Binding StatusNarudzbe}"/>
 
                         <BoxView Style="{StaticResource bvDelimiter}"/>
@@ -70,7 +70,7 @@
                         <StackLayout x:Name="contRestoraniNarudzbe"/>
 
                         <Label Text="{Binding Source='Naručena hrana', Converter={StaticResource Key=lblCaps}}"
-                       Style="{StaticResource infoLabelBold}"/>
+                                Style="{StaticResource infoLabelBold}"/>
                         <StackLayout x:Name="contHranaNarudzbe"/>
 
                     </StackLayout>

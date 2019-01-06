@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Easyfood_Xamarin.Converter"
+             xmlns:partials="clr-namespace:Easyfood_Xamarin.PartialViews"
+             x:Class="Easyfood_Xamarin.RestoraniSlicniPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <partials:RequiredLoginNapomena x:Name="requiredLoginPartialView" IsVisible="False"/>
+            <StackLayout HorizontalOptions="Center" Style="{StaticResource Container}">
+                <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="True"/>
+                <StackLayout x:Name="containerApiError" Orientation="Vertical" IsVisible="False">
+                    <Label Text="Došlo je do greške kod učitavanja podataka. Pokušajte ponovo" TextColor="Red" FontSize="11" HorizontalOptions="Center"/>
+                    <Button x:Name="btnReloadPodatke" Text="Učitaj podatke" HorizontalOptions="Center" Clicked="BtnReloadPodatke_Clicked"/>
+                </StackLayout>
+                <Label Text="{Binding Naziv}" Style="{StaticResource titleLabel}"/>
+                <Label Text="{Binding BlokGrad}"/>
+                <Label Text="{Binding Opis}" Style="{StaticResource opisLabel}"/>
+                <BoxView Style="{StaticResource bvDelimiter}"/>
+                <Label Text="SLIČNI RESTORANI" Style="{StaticResource infoLabelBold}"/>
+                <ListView x:Name="listViewRestorani" 
+                          HasUnevenRows="True" 
+                          ItemTapped="ListViewRestorani_ItemTapped" 
+                          HorizontalOptions="Center">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <partials:RestoranListViewItem />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Easyfood_Xamarin.Converter"
+             xmlns:partials="clr-namespace:Easyfood_Xamarin.PartialViews"
+             x:Class="Easyfood_Xamarin.RestoraniPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <partials:RequiredLoginNapomena x:Name="requiredLoginPartialView" IsVisible="False"/>
+            <StackLayout HorizontalOptions="Center" Style="{StaticResource Container}">
+                <Picker x:Name="pickerGradovi" Title="" SelectedIndexChanged="PickerGradovi_SelectedIndexChanged"/>
+                <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="True" />
+                <StackLayout x:Name="containerApiError" IsVisible="False">
+                    <Label Text="Došlo je do greške kod učitavanja podataka. Pokušajte ponovo" TextColor="Red" FontSize="11" HorizontalOptions="Center"/>
+                    <Button x:Name="btnReloadPodatke" Text="Učitaj podatke" HorizontalOptions="Center" Clicked="BtnReloadPodatke_Clicked"/>
+                </StackLayout>
+                <ListView x:Name="listViewRestorani" 
+                          HasUnevenRows="True" 
+                          ItemTapped="ListViewRestorani_ItemTapped" 
+                          HorizontalOptions="Center">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+                                    <Image x:Name="imgRestoran"
+                                           Aspect="AspectFill"
+                                           Source="{Binding Slika, Converter={StaticResource Key=imgConv}}">
+                                    </Image>
+                                    <StackLayout VerticalOptions="Start" Padding="5">
+                                        <Label Text="{Binding Naziv}" FontAttributes="Bold"/>
+                                        <Label Text="{Binding BlokGrad}"/>
+                                        <Label Text="{Binding Opis}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

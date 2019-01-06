@@ -15,7 +15,8 @@ namespace Easyfood_Xamarin.Navigation
         public MyMasterDetailPage(ContentPage startPage = null)
         {
             InitializeComponent();
-            
+
+            // Ovdje generišemo starni page, jer možemo imati redirekciju sa logina pravo na npr korpu..
             // Ako je startPage null otvori nam defaultno RestoraniPage()
             Detail = startPage != null ?
                 new NavigationPage(startPage) :

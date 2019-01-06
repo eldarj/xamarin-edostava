@@ -33,12 +33,21 @@ namespace Easyfood_Xamarin.Navigation
             public MyMasterDetailPageMasterViewModel()
             {
                 var navlinks = new List<MyMasterDetailPageMenuItem>();
-                navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Restorani", ImageSource = "add.png", TargetType = typeof(RestoraniPage) });
-                navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Korpa", TargetType = typeof(KorpaPage) });
+
+                navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Restorani", ImageSource = "star.png", TargetType = typeof(RestoraniPage) });
+
+                if (Global.Narucilac != null)
+                {
+                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Omiljeni restorani", TargetType = typeof(RestoraniOmiljeniPage) });
+                }
+
+                navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Korpa", ImageSource = "heart_dark.png", TargetType = typeof(KorpaPage) });
+
                 if (Global.Narucilac != null)
                 {
                     navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Moje narudžbe", TargetType = typeof(NarudzbePage) });
-                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Omiljeni restorani", TargetType = typeof(RestoraniPage) });
+                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Preporučeni restorani", TargetType = typeof(RestoraniPreporuceniPage) });
+                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Logout", TargetType = typeof(Login) });
                 }
                 else
                 {

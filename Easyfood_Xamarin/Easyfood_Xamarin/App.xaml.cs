@@ -11,8 +11,7 @@ namespace Easyfood_Xamarin
         {
             InitializeComponent();
 
-            MainPage = new Navigation.MyMasterDetailPage();
-            // MainPage = new NavigationPage(new Login()); //kreiraj stack
+            MainPage = new Navigation.MyMasterDetailPage(); // kreiraj naš masterdetailpage
         }
 
         protected override void OnStart()

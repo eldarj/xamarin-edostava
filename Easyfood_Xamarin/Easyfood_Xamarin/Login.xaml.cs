@@ -8,18 +8,27 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Easyfood_Xamarin.Validators;
+using System.Collections.Generic;
 
 namespace Easyfood_Xamarin
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Login : ContentPage
 	{
-        private WebApiHelper servis = new WebApiHelper("auth");
+        private WebApiHelper servis = new WebApiHelper();
 
-		public Login ()
+        public Login ()
         {
-			InitializeComponent ();
-		}
+            InitializeComponent ();
+
+            // logout radimo ovdje - zašto? jer ULOGIRANI korisnik nikad neće moći doći do login page-a osim preko eksplicitnog linka
+            if (Global.Narucilac != null)
+            {
+                Global.Narucilac = null;
+                DisplayAlert("Logout", "Uspješno ste se izlogirali!", "Ok");
+                App.Current.MainPage = new Navigation.MyMasterDetailPage(new Login()); // Zbog main navigacije i linkova moramo refreshat login page...
+            }
+        }
 
         private async void BtnLogin_Clicked(object sender, EventArgs e)
         {
@@ -45,7 +54,7 @@ namespace Easyfood_Xamarin
             {
                 try
                 {
-                    HttpResponseMessage response = servis.GetResponse(inputUsername.Text).Result;
+                    HttpResponseMessage response = servis.GetResponse("auth/" + inputUsername.Text).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         string salt = JsonConvert.DeserializeObject<string>(response.Content.ReadAsStringAsync().Result);
@@ -55,7 +64,7 @@ namespace Easyfood_Xamarin
                             LozinkaHash = UIHelper.GenerateHash(inputPassword.Text, salt)
                         };
 
-                        HttpResponseMessage loginResponse = servis.PostResponse(n).Result;
+                        HttpResponseMessage loginResponse = servis.PostResponse("auth", n).Result;
                         if (loginResponse.IsSuccessStatusCode)
                         {
                             return JsonConvert.DeserializeObject<Narucilac>(loginResponse.Content.ReadAsStringAsync().Result);
@@ -72,7 +81,11 @@ namespace Easyfood_Xamarin
             loaderIndicator.IsRunning = false;
             if (narucilacObj != null)
             {
-                DisplayAlert("Uspjeh", "Uspješno ste se ulogirali!", "OK");
+                HttpResponseMessage response = await servis.GetResponse("korisnici/" + narucilacObj.KorisnikID + "/omiljenirestorani");
+                if (response.IsSuccessStatusCode)
+                    Global.CurrentOmiljeni = JsonConvert.DeserializeObject<List<Restoran>>(response.Content.ReadAsStringAsync().Result);
+
+                DisplayAlert("Uspjeh", "Uspješno ste se ulogirali!", "Ok");
                 Global.Narucilac = narucilacObj;
 
                 App.Current.MainPage = Global.OnUserAuthGoToKorpaFlag  ? 

@@ -16,7 +16,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Navigation\MyMasterDetailPageMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)RestoraniPage.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoraniPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -26,7 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\LabelCapitalizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\ZvjezdicaGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Global.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)KorpaPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Korpa\KorpaPage.xaml.cs">
       <DependentUpon>KorpaPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -34,11 +34,11 @@
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)NarudzbeDetailsPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Narudzbe\NarudzbeDetailsPage.xaml.cs">
       <DependentUpon>NarudzbeDetailsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)NarudzbePage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Narudzbe\NarudzbePage.xaml.cs">
       <DependentUpon>NarudzbePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -53,23 +53,39 @@
       <DependentUpon>RequiredLoginNapomena.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)RestoraniDetailsPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)PartialViews\RestoranListViewItem.xaml.cs">
+      <DependentUpon>RestoranListViewItem.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoraniDetailsPage.xaml.cs">
       <DependentUpon>RestoraniDetailsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)RestoraniPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoraniOmiljeniPage.xaml.cs">
+      <DependentUpon>RestoraniOmiljeniPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoraniPage.xaml.cs">
       <DependentUpon>RestoraniPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Registracija.xaml.cs">
       <DependentUpon>Registracija.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)RestoraniRecenzije.xaml.cs">
-      <DependentUpon>RestoraniRecenzije.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoraniPreporuceniPage.xaml.cs">
+      <DependentUpon>RestoraniPreporuceniPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)RestoranJelovnik.xaml.cs">
-      <DependentUpon>RestoranJelovnik.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoraniSlicniPage.xaml.cs">
+      <DependentUpon>RestoraniSlicniPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoraniRecenzijePage.xaml.cs">
+      <DependentUpon>RestoraniRecenzijePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoranJelovnikPage.xaml.cs">
+      <DependentUpon>RestoranJelovnikPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Validators\NarucilacValidator.cs" />
@@ -77,7 +93,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Validators\ValidatorField.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HranaVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\KorpaVM.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RecenzijeVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RestoranDetailsVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Registracija.xaml">
@@ -92,25 +108,25 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)RestoranJelovnik.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoranJelovnikPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)KorpaPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Korpa\KorpaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)NarudzbePage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Narudzbe\NarudzbePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)NarudzbeDetailsPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Narudzbe\NarudzbeDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -122,15 +138,44 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)RestoraniDetailsPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoraniDetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)RestoraniRecenzije.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoraniRecenzijePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoraniSlicniPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)PartialViews\RestoranListViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoraniOmiljeniPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Restorani\RestoraniPreporuceniPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\Narudzbe\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\Korpa\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Pages\Restorani\" />
   </ItemGroup>
 </Project>

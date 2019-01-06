@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace Easyfood_Xamarin.Converter
 {
-    // Primjer konvertera string.toupper()........
+    // Konvertera string.toupper()....
     class LabelCapitalizer : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

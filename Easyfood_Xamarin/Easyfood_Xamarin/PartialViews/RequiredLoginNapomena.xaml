@@ -2,15 +2,12 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Easyfood_Xamarin.PartialViews.RequiredLoginNapomena">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-    </ContentView.Content>
-    <StackLayout x:Name="stackRequiredLogin" Style="{StaticResource napomenaBox}">
-        <StackLayout HorizontalOptions="CenterAndExpand">
-            <Label Style="{StaticResource napomenaLoginRequiredLabel}"/>
-            <Button x:Name="BtnGotoLogin" Text="Login" HorizontalOptions="Center" Clicked="BtnGotoLogin_Clicked"/>
+    <ContentView.Content>
+        <StackLayout x:Name="stackRequiredLogin" Style="{StaticResource napomenaBox}">
+            <StackLayout Orientation="Horizontal" Style="{StaticResource Container}">
+                <Label Style="{StaticResource napomenaLoginRequiredLabel}" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+                <Button x:Name="BtnGotoLogin" Text="Login" HorizontalOptions="End" Clicked="BtnGotoLogin_Clicked" VerticalOptions="Center"/>
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
+    </ContentView.Content>
 </ContentView>

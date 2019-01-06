@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:partials="clr-namespace:Easyfood_Xamarin.PartialViews"
+             xmlns:converters="clr-namespace:Easyfood_Xamarin.Converter"
+             x:Class="Easyfood_Xamarin.RestoraniDetailsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"/>
+            <converters:ZvjezdicaGenerator x:Key="zvjezdicaConv"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <partials:RequiredLoginNapomena x:Name="requiredLoginPartialView" IsVisible="True"/>
+            <ScrollView Style="{StaticResource ScrollContainer}" Padding="5">
+                <StackLayout>
+                    <!-- Glavni podaci o restoranu -->
+                    <Image Source="{Binding Slika, Converter={StaticResource imgConv}}" Aspect="AspectFill"></Image>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                        <Label Text="{Binding Naziv}" Style="{StaticResource titleLabel}"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                            <Label Text="{Binding OmiljeniStatusString}" VerticalOptions="Center" Style="{StaticResource errorLabel}"/>
+                            <ImageButton x:Name="BtnDodajUOmiljene" Source="{Binding IsOmiljeniImgSource}" 
+                                Command="{Binding ToggleOmiljeni}"
+                                WidthRequest="25"
+                                IsVisible="False"
+                                VerticalOptions="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <ImageButton Style="{StaticResource Zvjezdica}" Source="{Binding ProsjecnaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=1}" />
+                        <ImageButton Style="{StaticResource Zvjezdica}" Source="{Binding ProsjecnaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=2}" />
+                        <ImageButton Style="{StaticResource Zvjezdica}" Source="{Binding ProsjecnaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=3}" />
+                        <ImageButton Style="{StaticResource Zvjezdica}" Source="{Binding ProsjecnaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=4}" />
+                        <ImageButton Style="{StaticResource Zvjezdica}" Source="{Binding ProsjecnaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=5}" />
+                    </StackLayout>
+                    <Label Text="{Binding UkupnoRecenzija}"/>
+                    <Label Text="{Binding Opis}" Style="{StaticResource opisLabel}"/>
+                    <BoxView Style="{StaticResource bvDelimiter}"/>
+                    <!-- Kontakt -->
+                    <StackLayout Spacing="10">
+                        <Label Text="KONTAKT" Style="{StaticResource infoLabelBold}"/>
+                        <Label Text="{Binding AdresaFull}"/>
+                        <Label Text="{Binding Telefon}"/>
+                        <Label Text="{Binding Email}"/>
+                        <Label Text="{Binding WebUrl}"/>
+                        <BoxView Style="{StaticResource bvDelimiter}"/>
+                    </StackLayout>
+                    <!-- Buttons -->
+                    <Label Text="Pretraži hranu" Style="{StaticResource infoLabel}"/>
+                    <Button x:Name="BtnGotoJelovnik" Text="Jelovnik" Clicked="BtnGotoJelovnik_Clicked" HorizontalOptions="Start"/>
+                    <Label Text="Napišite recenziju" Style="{StaticResource infoLabel}"/>
+                    <Button x:Name="BtnGotoRecenzije" Text="Ocjene i komentari" Clicked="BtnGotoRecenzije_Clicked" HorizontalOptions="Start"/>
+                    <Label Text="Pretraži slične restorane" Style="{StaticResource infoLabel}"/>
+                    <Button x:Name="BtnGotoSlicniRestorani" Text="Slični restorani" Clicked="BtnGotoSlicniRestorani_Clicked" HorizontalOptions="Start"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

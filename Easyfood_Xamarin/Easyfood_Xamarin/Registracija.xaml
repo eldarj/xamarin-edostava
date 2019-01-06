@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Easyfood_Xamarin.Registracija"
              Title="Registracija">
-    <StackLayout Margin="10" VerticalOptions="CenterAndExpand">
+    <StackLayout VerticalOptions="CenterAndExpand" Style="{StaticResource Container}">
         <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="True" />
         <StackLayout x:Name="containerApiError" Orientation="Vertical" IsVisible="False">
             <Label Text="Došlo je do greške kod učitavanja podataka. Pokušajte ponovo" TextColor="Red" FontSize="11" HorizontalOptions="Center"/>
@@ -35,8 +35,8 @@
         <Picker x:Name="pickerLokacija" Title=""/>
 
         <!-- Button section -->
-        <Button Text="Registrujte se" Clicked="Registracija_Clicked"/>
+        <Button x:Name="BtnRegistracija" Text="Registrujte se" Clicked="Registracija_Clicked" FontAttributes="Bold" IsEnabled="False"/>
         <Label Text="Već posjedujete račun?" HorizontalTextAlignment="Center"/>
-        <Button Text="Login"/>
+        <Button Text="Login" FontAttributes="Bold" Clicked="BtnGotoLogin_Clicked"/>
     </StackLayout>
 </ContentPage>

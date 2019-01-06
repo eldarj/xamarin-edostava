@@ -37,7 +37,7 @@ namespace Easyfood_Xamarin
         private async void LoadDataFromApi()
         {
             containerApiError.IsVisible = false;
-            loaderIndicator.IsRunning = true;
+            loaderIndicator.IsRunning = loaderIndicator.IsVisible = true;
             try
             {
                 HttpResponseMessage response = await servis.GetResponse("narudzbe/" + narudzbaId);
@@ -101,7 +101,7 @@ namespace Easyfood_Xamarin
                 containerApiError.IsVisible = true;
                 mainNarudzbaInfoHolder.IsVisible = false;
             }
-            loaderIndicator.IsRunning = false;
+            loaderIndicator.IsRunning = loaderIndicator.IsVisible = false;
         }
 
         private void BtnReloadPodatke_Clicked(object sender, EventArgs e)

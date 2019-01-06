@@ -17,7 +17,7 @@ using static Easyfood_Xamarin.ViewModels.HranaVM;
 namespace Easyfood_Xamarin
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RestoranJelovnik : ContentPage
+	public partial class RestoranJelovnikPage : ContentPage
 	{
         private WebApiHelper servis = new WebApiHelper();
 
@@ -25,13 +25,13 @@ namespace Easyfood_Xamarin
         private HranaVM vm = new HranaVM();
         private int restoranId;
 
-        public RestoranJelovnik ()
+        public RestoranJelovnikPage ()
 		{
 			InitializeComponent ();
             BindingContext = vm;
         }
 
-        public RestoranJelovnik(int restoranId)
+        public RestoranJelovnikPage(int restoranId)
         {
             InitializeComponent();
             BindingContext = vm; // set binding context to our ViewModel
@@ -52,7 +52,7 @@ namespace Easyfood_Xamarin
                 vm.SetListHrana(originalListHrana);
                 HranaListItems.ItemsSource = vm.listHrana;
             }
-            loaderIndicator.IsRunning = false;
+            loaderIndicator.IsRunning = loaderIndicator.IsVisible = false;
             base.OnAppearing();
         }
 
@@ -85,6 +85,11 @@ namespace Easyfood_Xamarin
             // Nemoj selektovati (highlight) iteme lise
             if (e == null) return;
             ((ListView)sender).SelectedItem = null;
+        }
+
+        private void BtnGotoKorpa_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new KorpaPage());
         }
     }
 }

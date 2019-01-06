@@ -10,6 +10,7 @@ namespace Easyfood_Xamarin.Helpers
     {
         public static Narucilac Narucilac { get; set; }
         public static Narudzba Narudzba { get; set; }
+        public static List<Restoran> CurrentOmiljeni { get; set; } = new List<Restoran>();
         public static bool OnUserAuthGoToKorpaFlag { get; set; }
 
         public static string GetNarucilacAdresa { get { return Narucilac != null ? Narucilac.Adresa : "-";  } }

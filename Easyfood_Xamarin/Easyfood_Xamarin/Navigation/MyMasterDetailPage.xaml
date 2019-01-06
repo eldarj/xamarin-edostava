@@ -8,7 +8,7 @@
   <MasterDetailPage.Master>
     <nav:MyMasterDetailPageMaster x:Name="MasterPage" />
   </MasterDetailPage.Master>
-  <!-- Nećemo koristiti xaml način kreiranja defaultnog page-a, već ćemo koristit code-behind x:Class -->
+  <!-- Nećemo koristiti xaml način kreiranja defaultnog page-a, već code-behind constructor-MyMasterDetailPage.xaml.cs -->
   <!--<MasterDetailPage.Detail>
     <NavigationPage>
       <x:Arguments>
