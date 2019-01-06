@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -25,6 +23,8 @@ namespace Easyfood_Xamarin
 		{
             restoran = r;
 
+            this.Title = "Restoran - " + r.Naziv;
+
             BindingContext = restoran;
 			InitializeComponent ();
 		}
@@ -41,7 +41,7 @@ namespace Easyfood_Xamarin
         private async void loadDataFromApi()
         {
             containerApiError.IsVisible = false;
-            loaderIndicator.IsRunning = true;
+            loaderIndicator.IsRunning = loaderIndicator.IsVisible = true;
             try
             {
                 HttpResponseMessage response = await servis.GetResponse(restoran.RestoranID + "/slicni");
@@ -62,7 +62,7 @@ namespace Easyfood_Xamarin
             {
                 containerApiError.IsVisible = true;
             }
-            loaderIndicator.IsRunning = false;
+            loaderIndicator.IsRunning = loaderIndicator.IsVisible = false;
         }
         private void ListViewRestorani_ItemTapped(object sender, ItemTappedEventArgs e)
         {

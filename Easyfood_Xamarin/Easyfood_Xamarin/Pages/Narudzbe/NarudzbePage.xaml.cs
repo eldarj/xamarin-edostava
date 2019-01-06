@@ -54,18 +54,6 @@ namespace Easyfood_Xamarin
             loaderIndicator.IsRunning = loaderIndicator.IsVisible = false;
         }
 
-        private void BtnReloadPodatke_Clicked(object sender, EventArgs e)
-        {
-            LoadDataFromApi();
-        }
-        private void ListViewNarudzbe_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            if (e.Item != null)
-            {
-                Navigation.PushAsync(new NarudzbeDetailsPage(((Narudzba)e.Item).NarudzbaID));
-            }
-        }
-
         private void SearchPretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             string pretraga = searchPretraga.Text;
@@ -84,6 +72,19 @@ namespace Easyfood_Xamarin
 
                 lblEmptyList.IsVisible = filteredList.Count == 0 ? true : false;
             }
+        }
+
+        private void ListViewNarudzbe_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item != null)
+            {
+                Navigation.PushAsync(new NarudzbeDetailsPage(((Narudzba)e.Item).NarudzbaID));
+            }
+        }
+
+        private void BtnReloadPodatke_Clicked(object sender, EventArgs e)
+        {
+            LoadDataFromApi();
         }
     }
 }

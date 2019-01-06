@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Easyfood_Xamarin.Pages.Profil.ProfilPage">
+    <ContentPage.Content>
+        <ScrollView Style="{StaticResource ScrollContainer}" Padding="5">
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding ImePrezime}" Style="{StaticResource titleLabel}"/>
+                    <Label Text="-" Style="{StaticResource titleLabel}"/>
+                    <Label Text="Moj profil" Style="{StaticResource titleLabel}"/>
+                </StackLayout>
+                <BoxView Style="{StaticResource bvDelimiter}"/>
+                <!-- Glavni podaci o naruciocu -->
+                <Label Text="Ime i prezime"/>
+                <Label Text="{Binding ImePrezime}"/>
+                <Label Text="Username"/>
+                <Label Text="{Binding Username}"/>
+                <Label Text="Datum registracije"/>
+                <Label Text="{Binding DatumRegistracijeFormatted}"/>
+                <Label Text="Adresa"/>
+                <Label Text="{Binding AdresaFull}"/>
+                <BoxView Style="{StaticResource bvDelimiter}"/>
+                <!-- Kontakt -->
+                <StackLayout>
+                    <Label Text="KONTAKT" Style="{StaticResource infoLabelBold}"/>
+                    <Label Text="Br. telefona"/>
+                    <Label Text="{Binding Telefon}"/>
+                    <Label Text="Email adresa"/>
+                    <Label Text="{Binding Email}"/>
+                    <BoxView Style="{StaticResource bvDelimiter}"/>
+                </StackLayout>
+                <!-- Buttons -->
+                <Label Text="Uredi profil" Style="{StaticResource infoLabel}"/>
+                <Button x:Name="BtnGotoProfilUredi" Text="Uredi" Clicked="BtnGotoProfilUredi_Clicked" HorizontalOptions="Start"/>
+                <Label Text="Promijeni lozinku" Style="{StaticResource infoLabel}"/>
+                <Button x:Name="BtnGotoProfilPromijeniLozinku" Text="Promijeni lozinku" Clicked="BtnGotoProfilPromijeniLozinku_Clicked" HorizontalOptions="Start"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

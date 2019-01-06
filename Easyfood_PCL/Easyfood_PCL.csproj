@@ -62,6 +62,7 @@
     <Compile Include="Model\Hrana.cs" />
     <Compile Include="Model\Narucilac.cs" />
     <Compile Include="Model\Narudzba.cs" />
+    <Compile Include="Model\PasswordEditModel.cs" />
     <Compile Include="Model\Recenzija.cs" />
     <Compile Include="Model\Restoran.cs" />
     <Compile Include="Model\StavkaNarudzbe.cs" />

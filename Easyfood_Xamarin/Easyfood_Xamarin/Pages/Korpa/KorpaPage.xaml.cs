@@ -8,9 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -89,13 +86,11 @@ namespace Easyfood_Xamarin
                 if (response.IsSuccessStatusCode)
                 {
                     Narudzba n = JsonConvert.DeserializeObject<Narudzba>(response.Content.ReadAsStringAsync().Result);
-                    bool idinanarudzbu = await DisplayAlert("Uspjeh", "Uspješno ste kreirali narudžbu " + n.Sifra.ToString().Substring(0, 8), "Pogledaj narudžbu", "OK");
+                    bool idiNaNarudzbu = await DisplayAlert("Uspjeh", "Uspješno ste kreirali narudžbu " + n.Sifra.ToString().Substring(0, 8), "Pogledaj narudžbu", "OK");
                     vm.IsprazniKorpuCommand.Execute(null);
 
-                    if (idinanarudzbu)
-                    {
+                    if (idiNaNarudzbu)
                         Navigation.PushAsync(new NarudzbeDetailsPage(n.NarudzbaID));
-                    }
 
                 } else
                 {
@@ -124,6 +119,7 @@ namespace Easyfood_Xamarin
         {
             vm.Adresa = inputAdresa.Text;
         }
+
         private void BtnGotoLogin_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Login());

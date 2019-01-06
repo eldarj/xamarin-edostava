@@ -36,7 +36,7 @@ namespace Easyfood_Xamarin
                 NovaRecenzijaForm.IsVisible = true;
             }
 
-            loaderIndicator.IsRunning = false;
+            loaderIndicator.IsRunning = loaderIndicator.IsVisible = false;
             base.OnAppearing();
         }
 

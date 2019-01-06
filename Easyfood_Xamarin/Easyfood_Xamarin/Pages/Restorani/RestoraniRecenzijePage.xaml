@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage Title="Restoran - recenzije" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:partials="clr-namespace:Easyfood_Xamarin.PartialViews"
              xmlns:converters="clr-namespace:Easyfood_Xamarin.Converter"
@@ -30,7 +30,7 @@
                 <Label Text="RECENZIJE" Style="{StaticResource infoLabelBold}"/>
                 <StackLayout x:Name="NovaRecenzijaForm" IsVisible="False">
                     <Label Text="Napiši komentar"/>
-                    <Label Text="Ocijeni restoran" FontSize="13"/>
+                    <Label Text="Ocjena" FontSize="13"/>
                     <StackLayout x:Name="novaRecenzijaOcjena" Orientation="Horizontal">
                         <ImageButton Style="{StaticResource Zvjezdica}" Source="{Binding NovaRecenzijaOcjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=1}"
                           Command="{Binding NovaOcjenaCommand}" CommandParameter="1"/>
@@ -48,10 +48,11 @@
                     <Button x:Name="btnNoviKomentar" Text="Napiši" Clicked="BtnNoviKomentar_Clicked" HorizontalOptions="Start"/>
                 </StackLayout>
                 <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="True" />
+                <Label Text="Uspješno ste napisali komentar!" IsVisible="{Binding NoviKomentarSuccess}" Style="{StaticResource errorLabel}" />
                 <ListView x:Name="RecenzijeListView"
                       ItemsSource="{Binding ListRecenzije}"
                       HasUnevenRows="True"
-                      CachingStrategy="RecycleElement">
+                      CachingStrategy="RetainElement">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -59,16 +60,9 @@
                                     <Label Text="{Binding Datum}" FontSize="10"/>
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding ImePrezime}" FontSize="11"/>
-                                        <StackLayout x:Name="listItemRecenzijaOcjena" Orientation="Horizontal">
-                                            <ImageButton Style="{StaticResource Zvjezdica}" Source="{Binding Ocjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=1}" />
-                                            <ImageButton Style="{StaticResource Zvjezdica}" Source="{Binding Ocjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=2}" />
-                                            <ImageButton Style="{StaticResource Zvjezdica}" Source="{Binding Ocjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=3}" />
-                                            <ImageButton Style="{StaticResource Zvjezdica}" Source="{Binding Ocjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=4}" />
-                                            <ImageButton Style="{StaticResource Zvjezdica}" Source="{Binding Ocjena, Converter={StaticResource zvjezdicaConv}, ConverterParameter=5}" />
-                                        </StackLayout>
+                                        <Label Text="{Binding OcjenaStr}" FontSize="11"/>
                                     </StackLayout>
-                                    <Label Text="{Binding Komentar}" Parent="10"/>
-                                    <BoxView Style="{StaticResource bvDelimiter}"/>
+                                    <Label Text="{Binding Komentar}" Margin="5"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

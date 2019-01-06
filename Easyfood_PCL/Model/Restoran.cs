@@ -30,13 +30,6 @@ namespace Easyfood_Xamarin.Model
         public string PromStatusImePrezime { get; set; }
 
         // Dodatno
-        public string BlokGrad {
-            get
-            {
-                return ( (this.BlokNaziv + this.GradNaziv).Length > 0 ) ? 
-                    this.BlokNaziv + ", " + this.GradNaziv : 
-                    "";
-            }
-        }
+        public string BlokGrad => ( (BlokNaziv + GradNaziv).Length > 0 ) ? this.BlokNaziv + ", " + this.GradNaziv : "";
     }
 }

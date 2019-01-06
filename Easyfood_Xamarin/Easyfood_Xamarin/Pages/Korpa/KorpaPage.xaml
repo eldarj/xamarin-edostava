@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage Title="Moja korpa" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Easyfood_Xamarin.Converter"
              xmlns:vm="clr-namespace:Easyfood_Xamarin.ViewModels"
@@ -22,29 +22,26 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Image x:Name="imgHrana"
-                                       VerticalOptions="Start"
-                                       WidthRequest="100"
-                                       HeightRequest="100"
-                                       Aspect="AspectFill"
-                                       Grid.Column="0"
-                                       Margin="2"
-                                       Source="{Binding Slika, Converter={StaticResource Key=imgConv}}"></Image>
-                                    <StackLayout Orientation="Vertical"
-                                             Grid.Column="1">
+                                <StackLayout Orientation="Horizontal" Margin="5">
+                                    <StackLayout HorizontalOptions="Start">
+                                        <Image x:Name="imgHrana" VerticalOptions="Start"
+                                            WidthRequest="100" HeightRequest="100"
+                                            Aspect="AspectFill" Margin="2"
+                                            Source="{Binding Slika, Converter={StaticResource Key=imgConv}}"></Image>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="StartAndExpand">
                                         <Label Text="{Binding NarucenoIzRestorana}"></Label>
                                         <Label Text="{Binding KolicinaNazivFormatted}" FontAttributes="Bold"></Label>
                                         <Label Text="{Binding CijenaFormatted}"></Label>
                                     </StackLayout>
-                                    <Label Text="{Binding CijenaUkupnoFormatted}" 
-                                       Grid.Column="2"></Label>
-                                </Grid>
+                                    <StackLayout HorizontalOptions="End" Margin="5">
+                                        <ImageButton WidthRequest="15"
+                                            HorizontalOptions="End"
+                                            Source="remove_cross.png"
+                                            Command="{Binding HranaRemove}"/>
+                                        <Label Text="{Binding CijenaUkupnoFormatted}" HorizontalOptions="End"/>
+                                    </StackLayout>
+                                </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

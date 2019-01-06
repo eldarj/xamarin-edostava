@@ -25,6 +25,7 @@ namespace Easyfood_Xamarin.ViewModels
             private string _prezime { get; set; }
 
             public int Ocjena { get; set; }
+            public string OcjenaStr { get { return "Ocjena(" + Ocjena + ")"; } }
             public string Komentar { get; set; }
             public string ImePrezime => _ime + " " + _prezime;
             public string Datum => _datum.ToString("dd.MM.yyyy");
@@ -81,6 +82,12 @@ namespace Easyfood_Xamarin.ViewModels
             get { return _noviKomentarError; }
             set { _noviKomentarError = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NoviKomentarError")); }
         }
+        private bool _noviKomentarSuccess { get; set; } = false;
+        public bool NoviKomentarSuccess
+        {
+            get { return _noviKomentarSuccess; }
+            set { _noviKomentarSuccess = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NoviKomentarSuccess")); }
+        }
         private int _novaRecenzijaOcjena { get; set; }
         public int NovaRecenzijaOcjena {
             get { return _novaRecenzijaOcjena; }
@@ -115,7 +122,7 @@ namespace Easyfood_Xamarin.ViewModels
             if (response.IsSuccessStatusCode)
             {
                 IsOmiljeniRestoran = !IsOmiljeniRestoran;
-                OmiljeniStatusString = IsOmiljeniRestoran ? "Uspješno ste dodali restoran u omiljene!" : "Uklonili ste restoran iz omiljenih!";
+                OmiljeniStatusString = IsOmiljeniRestoran ? "Dodali restoran u omiljene!" : "Uklonili ste restoran iz omiljenih!";
             }
         }
 
@@ -129,17 +136,29 @@ namespace Easyfood_Xamarin.ViewModels
             }
             NoviKomentarError = false;
 
-            HttpResponseMessage response = await new WebApiHelper("recenzije").PostResponse(new Recenzija(){
-                    KorisnikID = Global.Narucilac.KorisnikID,
-                    Datum = DateTime.Now,
-                    RestoranID = RestoranID,
-                    Komentar = komentartext,
-                    Ocjena = NovaRecenzijaOcjena
-                });
+            var novaRec = new Recenzija()
+            {
+                KorisnikID = Global.Narucilac.KorisnikID,
+                Datum = DateTime.Now,
+                RestoranID = RestoranID,
+                Komentar = komentartext,
+                Ocjena = NovaRecenzijaOcjena
+            };
+            HttpResponseMessage response = await new WebApiHelper("recenzije").PostResponse(novaRec);
 
             if (response.IsSuccessStatusCode)
             {
+                List<Recenzija> responseitems = JsonConvert.DeserializeObject<List<Recenzija>>(response.Content.ReadAsStringAsync().Result)
+                    .OrderByDescending(x => x.Datum)
+                    .ToList();
 
+                if (responseitems.Count > 0)
+                {
+                    ListRecenzije = new ObservableCollection<RecenzijaItem>(responseitems.Select(x => new RecenzijaItem(x)));
+                    UkupnoRecenzija = String.Format("Ukupno recenzija: {0}", ListRecenzije.Count);
+                    ProsjecnaOcjena = ListRecenzije.Average(r => r.Ocjena);
+                    NoviKomentarSuccess = true;
+                }
             }
         }
         #endregion
@@ -154,7 +173,7 @@ namespace Easyfood_Xamarin.ViewModels
             Email = r.Email;
             WebUrl = r.WebUrl;
             AdresaFull = r.AdresaFull;
-            IsOmiljeniRestoran = Global.CurrentOmiljeni.Select(o => o.RestoranID).Contains(RestoranID);
+            IsOmiljeniRestoran = Global.CurrentOmiljeniRestorani.Select(o => o.RestoranID).Contains(RestoranID);
 
             ToggleOmiljeni = new Command(HandleToggleOmiljeni);
             NovaOcjenaCommand = new Command<string>(HandleOcjenaCommand);

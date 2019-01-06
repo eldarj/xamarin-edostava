@@ -47,21 +47,7 @@ namespace Easyfood_Xamarin
 
 
                     // Lista restorana koji su bili uključeni u narudžbu 
-                    // (Pristup koristeći HashSet za jedinstvene vrijednosti, jer možemo imati više stavki hrane iz jednog restorana)
-
-                    //var uqRestorani = new HashSet<string>(narudzba.StavkeNarudzbe.Select(s => s.Hrana.RestoranNaziv));
-                    //foreach (string r in uqRestorani)
-                    //{
-                    //    contRestoraniNarudzbe.Children.Add(new Button
-                    //    {
-                    //        Text = r,
-                    //        IsEnabled = false,
-                    //        CornerRadius = 10,
-                    //        HorizontalOptions = LayoutOptions.Start
-                    //    });
-                    //}
-
-                    // (Pristup sa extended enumerable foreach/fluent metodom *DistinctBy)
+                    // (Extended enumerable foreach/fluent metoda *DistinctBy)
                     narudzba.StavkeNarudzbe.DistinctBy(s => s.Hrana.RestoranID).ToList().ForEach(s =>
                     {
                         contRestoraniNarudzbe.Children.Add(new Button
@@ -75,7 +61,7 @@ namespace Easyfood_Xamarin
                     narudzba.StavkeNarudzbe.ForEach(s => 
                     {
                         // Kreiraj zaobljene button-e, jer Xamarin nema nikakav UI element ni library (barem ne za UWP/IOS/Android) 
-                        //      poput Androidovih ChipGroup i Chip-ova
+                        //      poput Androidovih ChipGroup i Chip-ova (samo radi izgleda...)
                         contHranaNarudzbe.Children.Add(new Button
                         {
                             Text = String.Format("x {0} {1} ({2}) {3} KM ", 
@@ -119,7 +105,8 @@ namespace Easyfood_Xamarin
                     HttpResponseMessage response = await servis.DeleteResponse("narudzbe", narudzba.NarudzbaID);
                     if (response.IsSuccessStatusCode)
                     {
-                        Navigation.PopAsync();
+                        DisplayAlert("Narudžba", "Uspješno ste izbrisali narudžbu!", "Ok");
+                        Navigation.PushAsync(new NarudzbePage());
                     }
                 }
             } else

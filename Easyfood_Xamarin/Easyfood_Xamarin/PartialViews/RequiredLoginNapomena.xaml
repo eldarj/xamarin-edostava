@@ -5,8 +5,11 @@
     <ContentView.Content>
         <StackLayout x:Name="stackRequiredLogin" Style="{StaticResource napomenaBox}">
             <StackLayout Orientation="Horizontal" Style="{StaticResource Container}">
-                <Label Style="{StaticResource napomenaLoginRequiredLabel}" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
-                <Button x:Name="BtnGotoLogin" Text="Login" HorizontalOptions="End" Clicked="BtnGotoLogin_Clicked" VerticalOptions="Center"/>
+                <Label Style="{StaticResource napomenaLoginRequiredLabel}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="White"/>
+                <Button x:Name="BtnGotoLogin" Text="Login" TextColor="White"
+                        Style="{StaticResource BtnSmall}"
+                        HorizontalOptions="End" VerticalOptions="Center"
+                        Clicked="BtnGotoLogin_Clicked" />
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

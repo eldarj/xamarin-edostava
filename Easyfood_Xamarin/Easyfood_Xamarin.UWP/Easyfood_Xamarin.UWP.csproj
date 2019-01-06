@@ -132,16 +132,26 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="cart.png" />
     <Content Include="easyfood_icon_red.png" />
     <Content Include="easyfood_icon_square.png" />
     <Content Include="easyfood_icon.png" />
+    <Content Include="exit_door.png" />
+    <Content Include="heart_black.png" />
     <Content Include="heart_dark.png" />
     <Content Include="heart_red.png" />
+    <Content Include="invoice.png" />
     <Content Include="minus_red.png" />
     <Content Include="minus.png" />
+    <Content Include="profil.png" />
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="remove_cross.png" />
+    <Content Include="restaurant.png" />
+    <Content Include="star_black.png" />
     <Content Include="star_dark.png" />
     <Content Include="star.png" />
+    <Content Include="user.png" />
+    <Content Include="user_plus.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

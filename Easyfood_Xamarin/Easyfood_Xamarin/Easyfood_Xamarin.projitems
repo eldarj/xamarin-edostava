@@ -26,6 +26,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\LabelCapitalizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\ZvjezdicaGenerator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Global.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logout.xaml.cs">
+      <DependentUpon>Logout.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Korpa\KorpaPage.xaml.cs">
       <DependentUpon>KorpaPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -49,6 +53,18 @@
       <DependentUpon>MyMasterDetailPageMaster.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Navigation\MyMasterDetailPageMenuItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Profil\ProfilEditPage.xaml.cs">
+      <DependentUpon>ProfilEditPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Profil\ProfilEditPasswordPage.xaml.cs">
+      <DependentUpon>ProfilEditPasswordPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Profil\ProfilPage.xaml.cs">
+      <DependentUpon>ProfilPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)PartialViews\RequiredLoginNapomena.xaml.cs">
       <DependentUpon>RequiredLoginNapomena.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -89,7 +105,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Validators\NarucilacValidator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Validators\ValidationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validators\ValidatorRules.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validators\ValidatorField.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HranaVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\KorpaVM.cs" />
@@ -177,5 +193,29 @@
     <Folder Include="$(MSBuildThisFileDirectory)Pages\Narudzbe\" />
     <Folder Include="$(MSBuildThisFileDirectory)Pages\Korpa\" />
     <Folder Include="$(MSBuildThisFileDirectory)Pages\Restorani\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Logout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Profil\ProfilPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Profil\ProfilEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pages\Profil\ProfilEditPasswordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

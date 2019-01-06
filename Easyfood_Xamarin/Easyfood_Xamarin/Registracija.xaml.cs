@@ -21,6 +21,9 @@ namespace Easyfood_Xamarin
         private List<Blok> listBlokovi;
         private NarucilacValidator validacija;
 
+        private string registerSalt;
+        private string registerPasswordHash;
+
         public Registracija ()
 		{
 			InitializeComponent ();
@@ -95,7 +98,8 @@ namespace Easyfood_Xamarin
                 return;
             }
 
-            string salt = UIHelper.GenerateSalt();
+            registerSalt = UIHelper.GenerateSalt();
+            registerPasswordHash = UIHelper.GenerateHash(inputPassword.Text, registerSalt);
             Narucilac n = new Narucilac
             {
                 Ime = inputIme.Text,
@@ -103,8 +107,8 @@ namespace Easyfood_Xamarin
                 Username = inputUsername.Text,
                 Adresa = inputAdresa.Text,
                 BlokID = ((Blok)pickerLokacija.SelectedItem).BlokID,
-                LozinkaSalt = salt,
-                LozinkaHash = UIHelper.GenerateHash(inputPassword.Text, salt)
+                LozinkaSalt = registerSalt,
+                LozinkaHash = registerPasswordHash
             };
 
             try
@@ -115,6 +119,9 @@ namespace Easyfood_Xamarin
                     DisplayAlert("Uspjeh", "Uspješno ste se registrovali!", "OK");
 
                     Global.Narucilac = JsonConvert.DeserializeObject<Narucilac>(response.Content.ReadAsStringAsync().Result);
+                    Global.Narucilac.LozinkaHash = registerPasswordHash;
+                    Global.Narucilac.LozinkaSalt = registerSalt;
+
                     App.Current.MainPage = Global.OnUserAuthGoToKorpaFlag ?
                         new Navigation.MyMasterDetailPage(new KorpaPage()) :
                         new Navigation.MyMasterDetailPage();

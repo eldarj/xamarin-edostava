@@ -27,7 +27,7 @@ namespace Easyfood_Xamarin
         public RestoraniDetailsPage (Restoran r)
 		{
 			InitializeComponent ();
-
+            this.Title = "Restoran - " + r.Naziv;
             restoran = r;
             vm = new RestoranDetailsVM(r);
             vm.Navigation = Navigation;

@@ -22,8 +22,10 @@ namespace Easyfood_Xamarin.ViewModels
             public double Cijena { get; set; }
             public int Kolicina { get; set; } = 0;
 
-            // Kolicina & stanje Visiblity (after hrana add/remove command exec) property notifier
+            
             public event PropertyChangedEventHandler PropertyChanged;
+
+            #region BindingProps
             private string _stanjeUKorpi { get; set; } = "";
             public string StanjeUKorpiProp
             {
@@ -50,8 +52,9 @@ namespace Easyfood_Xamarin.ViewModels
                 get { return _hranaRemoveButtonImg; }
                 set { _hranaRemoveButtonImg = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HranaRemoveButtonImg")); }
             }
+            #endregion
 
-            // HRANA ADD REMOVE COMMANDS
+            #region Commands
             public ICommand HranaAddedCommand { get; set; }
             private void HandleHranaAdded()
             {
@@ -95,6 +98,7 @@ namespace Easyfood_Xamarin.ViewModels
                     Global.RemoveHrana(hranaStavka);
                 }
             }
+            #endregion
 
             public HranaListItem()
             {

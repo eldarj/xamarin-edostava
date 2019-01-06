@@ -9,10 +9,10 @@ namespace Easyfood_Xamarin.Helpers
     class Global
     {
         public static Narucilac Narucilac { get; set; }
-        public static Narudzba Narudzba { get; set; }
-        public static List<Restoran> CurrentOmiljeni { get; set; } = new List<Restoran>();
+        public static List<Restoran> CurrentOmiljeniRestorani { get; set; } = new List<Restoran>();
         public static bool OnUserAuthGoToKorpaFlag { get; set; }
 
+        public static Narudzba Narudzba { get; set; }
         public static string GetNarucilacAdresa { get { return Narucilac != null ? Narucilac.Adresa : "-";  } }
         public static int? GetNarucilacBlokID { get { return Narucilac?.BlokID; } }
 
@@ -26,9 +26,9 @@ namespace Easyfood_Xamarin.Helpers
             {
                 Narudzba.StavkeNarudzbe.Add(new StavkaNarudzbe
                 {
+                    HranaID = hrana.HranaID,
                     Hrana = hrana,
                     NarudzbaID = Narudzba.NarudzbaID,
-                    HranaID = hrana.HranaID,
                     Kolicina = 1
                 });
             }
@@ -47,6 +47,24 @@ namespace Easyfood_Xamarin.Helpers
                     Narudzba.StavkeNarudzbe.Remove(s);
                 }
             }
+        }
+        public static int RemoveHrana(int stavkaId)
+        {
+            if (Narudzba.StavkeNarudzbe.Any(s => s.HranaID == stavkaId))
+            {
+                StavkaNarudzbe stavka = Narudzba.StavkeNarudzbe.Where(s => s.HranaID == stavkaId).Single();
+                if (stavka.Kolicina > 1)
+                {
+                    return --stavka.Kolicina;
+                }
+                else
+                {
+                    Narudzba.StavkeNarudzbe.Remove(stavka);
+                    return 0;
+                }
+            }
+
+            return 0;
         }
     }
 }

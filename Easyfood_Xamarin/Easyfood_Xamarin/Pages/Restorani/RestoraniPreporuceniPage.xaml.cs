@@ -33,7 +33,7 @@ namespace Easyfood_Xamarin
         private async void loadDataFromApi()
         {
             containerApiError.IsVisible = false;
-            loaderIndicator.IsRunning = true;
+            loaderIndicator.IsRunning = loaderIndicator.IsVisible = true;
             try
             {
                 HttpResponseMessage response = await servis.GetResponse(Global.Narucilac.KorisnikID + "/preporucenirestorani");
@@ -55,7 +55,7 @@ namespace Easyfood_Xamarin
             {
                 containerApiError.IsVisible = true;
             }
-            loaderIndicator.IsRunning = false;
+            loaderIndicator.IsRunning = loaderIndicator.IsVisible = false;
         }
         private void ListViewRestorani_ItemTapped(object sender, ItemTappedEventArgs e)
         {

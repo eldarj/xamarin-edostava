@@ -1,4 +1,5 @@
 ﻿using Easyfood_Xamarin.Helpers;
+using Easyfood_Xamarin.Pages.Profil;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,25 +35,26 @@ namespace Easyfood_Xamarin.Navigation
             {
                 var navlinks = new List<MyMasterDetailPageMenuItem>();
 
-                navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Restorani", ImageSource = "star.png", TargetType = typeof(RestoraniPage) });
+                navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Restorani", ImageSource = "restaurant.png", TargetType = typeof(RestoraniPage) });
 
                 if (Global.Narucilac != null)
                 {
-                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Omiljeni restorani", TargetType = typeof(RestoraniOmiljeniPage) });
+                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Omiljeni restorani", ImageSource = "heart_black.png", TargetType = typeof(RestoraniOmiljeniPage) });
                 }
 
-                navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Korpa", ImageSource = "heart_dark.png", TargetType = typeof(KorpaPage) });
+                navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Korpa", ImageSource = "cart.png", TargetType = typeof(KorpaPage) });
 
                 if (Global.Narucilac != null)
                 {
-                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Moje narudžbe", TargetType = typeof(NarudzbePage) });
-                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Preporučeni restorani", TargetType = typeof(RestoraniPreporuceniPage) });
-                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Logout", TargetType = typeof(Login) });
+                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Preporučeni restorani", ImageSource = "star_black.png", TargetType = typeof(RestoraniPreporuceniPage) });
+                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Moje narudžbe", ImageSource = "invoice.png", TargetType = typeof(NarudzbePage) });
+                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Moj Profil", ImageSource = "profil.png", TargetType = typeof(ProfilPage) });
+                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Logout", ImageSource = "exit_door.png", TargetType = typeof(Logout) });
                 }
                 else
                 {
-                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Login", TargetType = typeof(Login) });
-                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Registracija", TargetType = typeof(Registracija) });
+                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Login", ImageSource = "user.png", TargetType = typeof(Login) });
+                    navlinks.Add(new MyMasterDetailPageMenuItem { Title = "Registracija", ImageSource = "user_plus.png", TargetType = typeof(Registracija) });
                 }
 
                 MenuItems = new ObservableCollection<MyMasterDetailPageMenuItem>(navlinks);

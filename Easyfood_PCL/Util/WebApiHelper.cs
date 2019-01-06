@@ -73,6 +73,12 @@ namespace Easyfood_Xamarin.Util
             var jsonObject = new StringContent(JsonConvert.SerializeObject(existingObj), Encoding.UTF8, "application/json");
             return Client.PostAsync(endRoute, jsonObject).Result;
         }
+        public async Task<HttpResponseMessage> PutResponse(string param, Object existingObj)
+        {
+            var jsonObject = new StringContent(JsonConvert.SerializeObject(existingObj), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await Client.PutAsync(Route + "/" + param + "/", jsonObject);
+            return response;
+        }
         #endregion
 
         #region GetMethods

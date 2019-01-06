@@ -14,12 +14,15 @@ namespace Easyfood_Xamarin.Model
         public string LozinkaSalt { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
+        public string ImePrezime { get; set; }
         public string Email { get; set; }
         public string Telefon { get; set; }
         public System.DateTime DatumRegistracije { get; set; }
         public string Adresa { get; set; }
         public Nullable<int> BlokID { get; set; }
         public Nullable<int> GradID { get; set; }
+        public string AdresaFull { get; set; }
         public int UlogaKorisnikaID { get; set; }
+        public string DatumRegistracijeFormatted => DatumRegistracije.ToString("dd.MM.yyyy");
     }
 }

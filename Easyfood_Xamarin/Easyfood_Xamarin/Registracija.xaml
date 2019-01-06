@@ -1,42 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage Title="Registracija" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Easyfood_Xamarin.Registracija"
-             Title="Registracija">
-    <StackLayout VerticalOptions="CenterAndExpand" Style="{StaticResource Container}">
-        <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="True" />
-        <StackLayout x:Name="containerApiError" Orientation="Vertical" IsVisible="False">
-            <Label Text="Došlo je do greške kod učitavanja podataka. Pokušajte ponovo" TextColor="Red" FontSize="11" HorizontalOptions="Center"/>
-            <Button x:Name="btnReloadPodatke" Text="Učitaj podatke" HorizontalOptions="Center" Clicked="BtnReloadPodatke_Clicked"/>
+             x:Class="Easyfood_Xamarin.Registracija">
+    <ScrollView VerticalOptions="CenterAndExpand" Style="{StaticResource Container}" VerticalScrollBarVisibility="Always">
+        <StackLayout>
+            <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="True" />
+            <StackLayout x:Name="containerApiError" Orientation="Vertical" IsVisible="False">
+                <Label Text="Došlo je do greške kod učitavanja podataka. Pokušajte ponovo" TextColor="Red" FontSize="11" HorizontalOptions="Center"/>
+                <Button x:Name="btnReloadPodatke" Text="Učitaj podatke" HorizontalOptions="Center" Clicked="BtnReloadPodatke_Clicked"/>
+            </StackLayout>
+            <!-- Form inputs -->
+            <Label Text="Username"/>
+            <Label x:Name="UsernameError" FontSize="11" TextColor="Red" IsVisible="False"/>
+            <Entry x:Name="inputUsername" />
+
+            <Label Text="Password"/>
+            <Label x:Name="PasswordError" FontSize="11" TextColor="Red" IsVisible="False"/>
+            <Entry x:Name="inputPassword" IsPassword="True"/>
+
+            <Label Text="Ime"/>
+            <Label x:Name="ImeError" FontSize="11" TextColor="Red" IsVisible="False"/>
+            <Entry x:Name="inputIme"/>
+
+            <Label Text="Prezime"/>
+            <Label x:Name="PrezimeError" FontSize="11" TextColor="Red" IsVisible="False"/>
+            <Entry x:Name="inputPrezime"/>
+
+            <Label Text="Adresa"/>
+            <Label x:Name="AdresaError" FontSize="11" TextColor="Red" IsVisible="False"/>
+            <Entry x:Name="inputAdresa"/>
+
+            <!-- Blok i Grad Dropdown -->
+            <Label Text="Blok i grad"/>
+            <Picker x:Name="pickerLokacija" Title=""/>
+
+            <!-- Button section -->
+            <Button x:Name="BtnRegistracija" Text="Registrujte se" Clicked="Registracija_Clicked" FontAttributes="Bold" IsEnabled="False"/>
+            <Label Text="Već posjedujete račun?" HorizontalTextAlignment="Center"/>
+            <Button Text="Login" FontAttributes="Bold" Clicked="BtnGotoLogin_Clicked"/>
         </StackLayout>
-        <!-- Form inputs -->
-        <Label Text="Username"/>
-        <Label x:Name="UsernameError" FontSize="11" TextColor="Red" IsVisible="False"/>
-        <Entry x:Name="inputUsername" />
-
-        <Label Text="Password"/>
-        <Label x:Name="PasswordError" FontSize="11" TextColor="Red" IsVisible="False"/>
-        <Entry x:Name="inputPassword" IsPassword="True"/>
-
-        <Label Text="Ime"/>
-        <Label x:Name="ImeError" FontSize="11" TextColor="Red" IsVisible="False"/>
-        <Entry x:Name="inputIme"/>
-
-        <Label Text="Prezime"/>
-        <Label x:Name="PrezimeError" FontSize="11" TextColor="Red" IsVisible="False"/>
-        <Entry x:Name="inputPrezime"/>
-
-        <Label Text="Adresa"/>
-        <Label x:Name="AdresaError" FontSize="11" TextColor="Red" IsVisible="False"/>
-        <Entry x:Name="inputAdresa"/>
-
-        <!-- Blok i Grad Dropdown -->
-        <Label Text="Blok i grad"/>
-        <Picker x:Name="pickerLokacija" Title=""/>
-
-        <!-- Button section -->
-        <Button x:Name="BtnRegistracija" Text="Registrujte se" Clicked="Registracija_Clicked" FontAttributes="Bold" IsEnabled="False"/>
-        <Label Text="Već posjedujete račun?" HorizontalTextAlignment="Center"/>
-        <Button Text="Login" FontAttributes="Bold" Clicked="BtnGotoLogin_Clicked"/>
-    </StackLayout>
+    </ScrollView>
 </ContentPage>

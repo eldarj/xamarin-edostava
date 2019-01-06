@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Easyfood_Xamarin.Pages.Profil.ProfilEditPage">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="CenterAndExpand" Style="{StaticResource Container}" VerticalScrollBarVisibility="Always">
+            <StackLayout>
+                <ActivityIndicator x:Name="loaderIndicator" Color="Red" IsRunning="True" />
+                <StackLayout x:Name="containerApiError" Orientation="Vertical" IsVisible="False">
+                    <Label Text="Došlo je do greške kod učitavanja podataka. Pokušajte ponovo" TextColor="Red" FontSize="11" HorizontalOptions="Center"/>
+                    <Button x:Name="btnReloadPodatke" Text="Učitaj podatke" HorizontalOptions="Center" Clicked="BtnReloadPodatke_Clicked"/>
+                </StackLayout>
+                <!-- Form inputs -->
+                <Label Text="Ime"/>
+                <Label x:Name="ImeError" FontSize="11" TextColor="Red" IsVisible="False"/>
+                <Entry x:Name="inputIme" Text="{Binding Ime}"/>
+
+                <Label Text="Prezime"/>
+                <Label x:Name="PrezimeError" FontSize="11" TextColor="Red" IsVisible="False"/>
+                <Entry x:Name="inputPrezime" Text="{Binding Prezime}"/>
+
+                <Label Text="Adresa"/>
+                <Label x:Name="AdresaError" FontSize="11" TextColor="Red" IsVisible="False"/>
+                <Entry x:Name="inputAdresa" Text="{Binding Adresa}"/>
+                
+                <Label Text="Br. telefona"/>
+                <Label x:Name="TelefonError" FontSize="11" TextColor="Red" IsVisible="False"/>
+                <Entry x:Name="inputTelefon" Text="{Binding Telefon}"/>
+                
+                <Label Text="Email"/>
+                <Label x:Name="EmailError" FontSize="11" TextColor="Red" IsVisible="False"/>
+                <Entry x:Name="inputEmail" Text="{Binding Email}"/>
+
+                <!-- Blok i Grad Dropdown -->
+                <Label Text="Blok i grad"/>
+                <Picker x:Name="pickerLokacija" Title=""/>
+
+                <!-- Button section -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                    <Button x:Name="BtnUpdate" Text="Snimi" Clicked="BtnUpdate_Clicked" IsEnabled="False" HorizontalOptions="End"/>
+                    <Button x:Name="BtnOdustani" Text="Odustani" Clicked="BtnOdustani_Clicked" HorizontalOptions="End"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

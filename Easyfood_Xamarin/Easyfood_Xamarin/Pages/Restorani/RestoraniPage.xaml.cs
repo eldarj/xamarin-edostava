@@ -20,10 +20,6 @@ namespace Easyfood_Xamarin
         public RestoraniPage()
         {
             InitializeComponent();
-            var mainDisplay = DeviceDisplay.MainDisplayInfo;
-            var displayWidth = mainDisplay.Width;
-
-            // TODO: xamarin.Essentials - provjeri veličinu ekrana za u zavisnosti od tog podesi layout
         }
 
         protected override void OnAppearing()

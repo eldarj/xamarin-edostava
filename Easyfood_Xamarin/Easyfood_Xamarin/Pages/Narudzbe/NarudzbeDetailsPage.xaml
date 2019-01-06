@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage Title="Moje narudžbe" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:Easyfood_Xamarin.Converter"
              x:Class="Easyfood_Xamarin.NarudzbeDetailsPage">
@@ -20,18 +20,18 @@
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <StackLayout  Orientation="Vertical" HorizontalOptions="StartAndExpand" Margin="10">
                             <Label Text="{Binding Source='UID Šifra', Converter={StaticResource Key=lblCaps}}"
-                           Style="{StaticResource infoLabelBold}" 
-                           HorizontalOptions="StartAndExpand"/>
+                                   Style="{StaticResource infoLabelBold}" 
+                                   HorizontalOptions="StartAndExpand"/>
                             <Label Text="{Binding SifraString}" FontAttributes="Bold"/>
                         </StackLayout>
                         <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Margin="10">
                             <Label Text="{Binding Source='Ukupna cijena', Converter={StaticResource Key=lblCaps}}"
-                           Style="{StaticResource infoLabelBold}" 
-                           HorizontalOptions="StartAndExpand"/>
+                                   Style="{StaticResource infoLabelBold}" 
+                                   HorizontalOptions="StartAndExpand"/>
                             <Label Text="{Binding UkupnaCijenaFormatted}" 
-                           FontAttributes="Bold"
-                           VerticalOptions="Center"
-                           HorizontalOptions="EndAndExpand"/>
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" Margin="10">
