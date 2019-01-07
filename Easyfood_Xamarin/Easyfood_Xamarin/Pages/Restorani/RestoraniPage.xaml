@@ -26,10 +26,9 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
-                                    <Image x:Name="imgRestoran"
-                                           Aspect="AspectFill"
-                                           Source="{Binding Slika, Converter={StaticResource Key=imgConv}}">
+                                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" Padding="10">
+                                    <Image x:Name="imgRestoran" VerticalOptions="Start"
+                                        Source="{Binding Slika, Converter={StaticResource Key=imgConv}}">
                                     </Image>
                                     <StackLayout VerticalOptions="Start" Padding="5">
                                         <Label Text="{Binding Naziv}" FontAttributes="Bold"/>

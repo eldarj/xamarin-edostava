@@ -48,11 +48,11 @@ namespace Easyfood_Xamarin
                 if (response.IsSuccessStatusCode)
                 {
                     listRestorani = JsonConvert.DeserializeObject<List<Restoran>>(response.Content.ReadAsStringAsync().Result);
+                    listViewRestorani.ItemsSource = listRestorani;
                     if (listRestorani.Count == 0)
                     {
-                        listRestorani.Add(new Restoran { Naziv = "Nismo mogli pronaći niti jedan restoran sličan traženom!" });
+                        lblNoSimilar.IsVisible = true;
                     }
-                    listViewRestorani.ItemsSource = listRestorani;
                 } else
                 {
                     containerApiError.IsVisible = true;

@@ -14,18 +14,18 @@
         <StackLayout>
             <partials:RequiredLoginNapomena x:Name="requiredLoginPartialView" IsVisible="True"/>
             <ScrollView Style="{StaticResource ScrollContainer}" Padding="5">
-                <StackLayout>
+                <StackLayout HorizontalOptions="Center">
                     <!-- Glavni podaci o restoranu -->
-                    <Image Source="{Binding Slika, Converter={StaticResource imgConv}}" Aspect="AspectFill"></Image>
+                    <Image Source="{Binding Slika, Converter={StaticResource imgConv}}" HorizontalOptions="Start" Aspect="AspectFit"></Image>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
                         <Label Text="{Binding Naziv}" Style="{StaticResource titleLabel}"/>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                             <Label Text="{Binding OmiljeniStatusString}" VerticalOptions="Center" Style="{StaticResource errorLabel}"/>
                             <ImageButton x:Name="BtnDodajUOmiljene" Source="{Binding IsOmiljeniImgSource}" 
-                                Command="{Binding ToggleOmiljeni}"
-                                WidthRequest="25"
-                                IsVisible="False"
-                                VerticalOptions="Center"/>
+                            Command="{Binding ToggleOmiljeni}"
+                            WidthRequest="25"
+                            IsVisible="False"
+                            VerticalOptions="Center"/>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">

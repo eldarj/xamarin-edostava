@@ -23,6 +23,7 @@
                 <Label Text="{Binding Opis}" Style="{StaticResource opisLabel}"/>
                 <BoxView Style="{StaticResource bvDelimiter}"/>
                 <Label Text="SLIČNI RESTORANI" Style="{StaticResource infoLabelBold}"/>
+                <Label x:Name="lblNoSimilar" Text="Nismo mogli pronaći niti jedan restoran sličan traženom!" IsVisible="False"/>
                 <ListView x:Name="listViewRestorani" 
                           HasUnevenRows="True" 
                           ItemTapped="ListViewRestorani_ItemTapped" 

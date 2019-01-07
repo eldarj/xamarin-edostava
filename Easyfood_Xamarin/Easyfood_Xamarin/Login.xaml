@@ -5,9 +5,9 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" Style="{StaticResource Container}">
             <Label x:Name="UsernameError" IsVisible="False" TextColor="Red" FontSize="11"/>
-            <Entry x:Name="inputUsername" Placeholder="Username" Text="almasa" />
+            <Entry x:Name="inputUsername" Placeholder="Username" Text="narucilac" />
             <Label x:Name="PasswordError" IsVisible="False" TextColor="Red" FontSize="11"/>
-            <Entry x:Name="inputPassword" Placeholder="Password" Text="almasa" IsPassword="True" />
+            <Entry x:Name="inputPassword" Placeholder="Password" Text="test" IsPassword="True" />
             <Button x:Name="btnLogin" Text="Login" Clicked="BtnLogin_Clicked" FontAttributes="Bold"/>
             <Label Text="Nemate račun?" HorizontalOptions="Center"/>
             <Button x:Name="btnRegistracija" Text="Registrujte se" Clicked="BtnRegistracija_Clicked" FontAttributes="Bold"/>
