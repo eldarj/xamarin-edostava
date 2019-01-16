@@ -13,7 +13,7 @@ namespace Easyfood_Xamarin.Util
         public HttpClient Client { get; set; }
         public string Route { get; set; }
 
-        public static String DEFAULT_API_URI = "http://192.168.1.8:58299";
+        public static String DEFAULT_API_URI = "http://localhost:58299";
         public static String DEFAULT_API_PREFIX = "api";
 
         #region Constructors
